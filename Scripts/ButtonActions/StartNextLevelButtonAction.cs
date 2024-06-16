@@ -1,6 +1,6 @@
 using Infrastructure.Attributes;
 using Infrastructure.Services;
-using Infrastructure.SortingGame;
+// using Infrastructure.SortingGame;
 
 namespace Infrastructure.ButtonActions
 {
@@ -8,20 +8,20 @@ namespace Infrastructure.ButtonActions
     public class StartNextLevelButtonAction : ButtonAction
     {
         private LevelsService _levelsService;
-        private SortingGameStarter _gameStarterService;
+        // private SortingGameStarter _gameStarterService;
         private ScreensService _screensService;
 
         public override void Action()
         {
             _levelsService.SetNextLevel();
             _screensService.HideCurrentScreen();
-            _gameStarterService.StartGame();
+            // _gameStarterService.StartGame();
         }
 
         protected override void Initialize()
         {
             _levelsService = ServiceLocator.GetService<LevelsService>();
-            _gameStarterService = ServiceLocator.GetService<SortingGameStarter>();
+            // _gameStarterService = ServiceLocator.GetService<SortingGameStarter>();
             _screensService = ServiceLocator.GetService<ScreensService>();
         }
     }
