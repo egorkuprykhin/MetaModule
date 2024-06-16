@@ -9,14 +9,14 @@ namespace Infrastructure.Views
         [SerializeField] private Toggle SfxToggle;
         [SerializeField] private Toggle VibrationToggle;
 
+        public override void UpdateView()
+        {
+            UpdateToggleValues();
+        }
+
         protected override void Subscribe()
         {
             SubscribeToggles();
-        }
-
-        protected override void UpdateView()
-        {
-            UpdateToggleValues();
         }
 
         private void SubscribeToggles()

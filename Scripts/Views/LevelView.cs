@@ -34,7 +34,7 @@ namespace Infrastructure.Views
             UpdateView();
         }
 
-        public void UpdateView()
+        public override void UpdateView()
         {
             UpdateLevel();
             UpdateUnlockedState();

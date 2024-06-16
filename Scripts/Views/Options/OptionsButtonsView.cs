@@ -15,10 +15,6 @@ namespace Infrastructure.Views
             SubscribeButtons();
         }
 
-        protected override void UpdateView()
-        {
-        }
-
         private void SubscribeButtons()
         {
             if (MusicOnButton)

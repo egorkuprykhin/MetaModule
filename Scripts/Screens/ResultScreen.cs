@@ -69,7 +69,7 @@ namespace Infrastructure.Screens
         private void SetTimerText()
         {
             if (TimerView) 
-                TimerView.SetCurrentTime();
+                TimerView.UpdateView();
         }
     }
 }

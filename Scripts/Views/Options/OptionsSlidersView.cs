@@ -8,14 +8,14 @@ namespace Infrastructure.Views
         [SerializeField] private Slider SoundSlider;
         [SerializeField] private Slider MusicSlider;
 
+        public override void UpdateView()
+        {
+            UpdateSliderValues();
+        }
+
         protected override void Subscribe()
         {
             SubscribeSliders();
-        }
-
-        protected override void UpdateView()
-        {
-            UpdateSliderValues();
         }
 
         private void UpdateSliderValues()

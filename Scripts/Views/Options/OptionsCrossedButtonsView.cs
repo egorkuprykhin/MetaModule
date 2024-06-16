@@ -10,16 +10,16 @@ namespace Infrastructure.Views
         [SerializeField] private Button MusicButton;
         [SerializeField] private Image MusicCross;
 
+        public override void UpdateView()
+        {
+            SfxCross.enabled = !_sfxService.SfxEnabled;
+            MusicCross.enabled = !_sfxService.MusicEnabled;
+        }
+
         protected override void Subscribe()
         {
             SfxButton.onClick.AddListener(SwitchEnableSfx);
             MusicButton.onClick.AddListener(SwitchEnableMusic);
-        }
-
-        protected override void UpdateView()
-        {
-            SfxCross.enabled = !_sfxService.SfxEnabled;
-            MusicCross.enabled = !_sfxService.MusicEnabled;
         }
 
         private void SwitchEnableSfx()

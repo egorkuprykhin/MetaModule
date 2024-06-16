@@ -1,5 +1,5 @@
 using System;
-using Infrastructure.Common;
+using Infrastructure.Core;
 using Infrastructure.Services;
 using TMPro;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Infrastructure.ButtonActions
 {
-    public class TimerView : MonoBehaviour, IInitializable
+    public class TimerView : MetaView
     {
         [SerializeField] private TMP_Text TimerText;
         [SerializeField] private Image FilledImage;
@@ -17,15 +17,19 @@ namespace Infrastructure.ButtonActions
         
         private TimerService _timerService;
 
-        public void Initialize()
+        public override void Initialize()
         {
             _timerService = ServiceLocator.GetService<TimerService>();
         }
 
-        public void SetCurrentTime()
+        public override void UpdateView()
         {
             if (TimerText)
                 SetTimerText(_timerService.CurrentTime);
+        }
+
+        public override void Show()
+        {
         }
 
         public void UpdateTimer()
@@ -42,7 +46,7 @@ namespace Infrastructure.ButtonActions
                         MinSize + ((MaxSize - MinSize) * timeLeftPercent),
                         StretchedImage.sizeDelta.y);
                 
-                SetCurrentTime();
+                UpdateView();
             }
         }
 

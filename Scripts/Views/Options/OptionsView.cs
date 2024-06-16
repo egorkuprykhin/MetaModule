@@ -30,6 +30,5 @@ namespace Infrastructure.Views
         }
 
         protected abstract void Subscribe();
-        protected abstract void UpdateView();
     }
 }

@@ -13,5 +13,9 @@ namespace Infrastructure.Core
         public virtual void Hide()
         {
         }
+
+        public virtual void UpdateView()
+        {
+        }
     }
 }

@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Infrastructure.Core
 {
@@ -9,7 +9,7 @@ namespace Infrastructure.Core
     
     public abstract class MetaViewAsync : MetaViewBase
     {
-        public abstract Task Show();
+        public abstract UniTask Show();
     }
 
     public abstract class MetaView<TPayload> : MetaViewBase
@@ -19,6 +19,6 @@ namespace Infrastructure.Core
     
     public abstract class MetaViewAsync<TPayload> : MetaViewBase
     {
-        public abstract Task Show(TPayload payload);
+        public abstract UniTask Show(TPayload payload);
     }
 }

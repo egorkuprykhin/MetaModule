@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Core;
 using UnityEngine;
 
@@ -6,9 +6,9 @@ namespace Infrastructure.Views
 {
     public abstract class ProgressbarBaseView : MetaViewAsync<float>
     {
-        protected float _showTime;
+        private float _showTime;
         
-        public override async Task Show(float showTime)
+        public override async UniTask Show(float showTime)
         {
             _showTime = showTime;
             await ShowProgress();
@@ -16,7 +16,7 @@ namespace Infrastructure.Views
 
         protected abstract void AdjustVisual(float factor);
 
-        private async Task ShowProgress()
+        private async UniTask ShowProgress()
         {
             float timer = 0;
             while (timer < _showTime)
@@ -25,11 +25,9 @@ namespace Infrastructure.Views
                 
                 AdjustVisual(factor);
 
-                float passedTime = Time.deltaTime;
-
-                timer += passedTime;
-
-                await Task.Delay((int)(passedTime * 1000));
+                await UniTask.Yield(PlayerLoopTiming.Update);
+                
+                timer += Time.deltaTime;
             }
         }
     }

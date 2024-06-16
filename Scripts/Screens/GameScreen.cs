@@ -1,30 +1,24 @@
 using Infrastructure.ButtonActions;
 using Infrastructure.Services;
 using Infrastructure.Views;
-using TMPro;
 using UnityEngine;
 
 namespace Infrastructure.Screens
 {
     public class GameScreen: ScreenBase, IInitializableScreen
     {
-        [SerializeField] private Transform Container;
-        [SerializeField] private TMP_Text ScoresText;
-        [SerializeField] private TMP_Text LevelText;
-        [SerializeField] private Transform AddScoresRoot;
+        [SerializeField] private CurrentLevelView LevelView;
+        [SerializeField] private ScoresView ScoresView;
         [SerializeField] private TimerView TimerView;
-        [SerializeField] private AddScoresView AddScoresViewPrefab;
 
-        private LevelsService _levelsService;
         private ScoresService _scoresService;
 
         public void Initialize()
         {
-            _levelsService = ServiceLocator.GetService<LevelsService>();
             _scoresService = ServiceLocator.GetService<ScoresService>();
+            _scoresService.ScoresAdded += scores => UpdateScores();
             
-            _scoresService.ScoresAdded += OnScoresAdded;
-            TimerView.Initialize();
+            InitializeViews();
         }
 
         public void StartGame()
@@ -34,6 +28,8 @@ namespace Infrastructure.Screens
 
         protected override void OnShow()
         {
+            ShowViews();
+
             UpdateScores();
             UpdateLevel();
         }
@@ -43,40 +39,48 @@ namespace Infrastructure.Screens
             UpdateTimer();
         }
 
-        private void OnScoresAdded(int scores)
+        private void InitializeViews()
         {
-            UpdateScores();
-            CreateAddScoresView(scores);
+            if (ScoresView)
+                ScoresView.Initialize();
+            if (LevelView)
+                LevelView.Initialize();
+            if (TimerView)
+                TimerView.Initialize();
         }
 
-        private void CreateAddScoresView(int scores)
+        private void ShowViews()
         {
-            AddScoresView addScoresView = Instantiate(AddScoresViewPrefab, AddScoresRoot, false);
-            addScoresView.Construct(scores);
+            if (LevelView)
+                LevelView.Show();
+            if (ScoresView)
+                ScoresView.Show();
+            if (TimerView)
+                TimerView.Show();
         }
 
         private void UpdateScores()
         {
-            if (ScoresText)
-                ScoresText.text = _scoresService.Scores.ToString();
+            if (ScoresView)
+                ScoresView.UpdateView();
         }
 
         private void UpdateLevel()
         {
-            if (LevelText)
-                LevelText.text = _levelsService.GetCurrentLevel().ToString();
-        }
-
-        private void ResetTimer()
-        {
-            if (TimerView)
-                TimerView.ResetTimer();
+            if (LevelView)
+                LevelView.UpdateView();
         }
 
         private void UpdateTimer()
         {
             if (TimerView)
                 TimerView.UpdateTimer();
+        }
+
+        private void ResetTimer()
+        {
+            if (TimerView)
+                TimerView.ResetTimer();
         }
     }
 }
