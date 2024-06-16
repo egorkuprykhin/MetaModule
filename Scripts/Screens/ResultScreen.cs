@@ -22,7 +22,6 @@ namespace Infrastructure.Screens
         private ScoresService _scoresService;
         private SfxService _sfxService;
         private GameResultService _gameResultService;
-        private TimerService _timerService;
 
         public void Initialize()
         {
@@ -30,14 +29,15 @@ namespace Infrastructure.Screens
             _scoresService = ServiceLocator.GetService<ScoresService>();
             _sfxService = ServiceLocator.GetService<SfxService>();
             _gameResultService = ServiceLocator.GetService<GameResultService>();
-            _timerService = ServiceLocator.GetService<TimerService>();
             
-            TimerView.Initialize();
+            if (TimerView)
+                TimerView.Initialize();
         }
 
         protected override void OnShow()
         {
-            StarsView.ShowAnimation();
+            if (StarsView)
+                StarsView.ShowAnimation();
             ShowResults();
         }
 

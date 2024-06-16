@@ -6,9 +6,6 @@ namespace Infrastructure.Settings
     [CreateAssetMenu(fileName = "CommonSettings")]
     public class CommonSettings : SettingsBase
     {
-        [SerializeField] public int ScoresForMatch;
-        [SerializeField] public int ScoresToWin;
-        
         [SerializeField] public int InitialLevelTime;
         [SerializeField] public bool TimerFromZero;
         [SerializeField] public int LevelsCount;

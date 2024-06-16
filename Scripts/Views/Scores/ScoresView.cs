@@ -3,6 +3,7 @@ using Infrastructure.Services;
 using Infrastructure.Settings;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Infrastructure.Views
 {
@@ -10,6 +11,7 @@ namespace Infrastructure.Views
     {
         [SerializeField] private TMP_Text Scores;
         [SerializeField] private Transform AddScoresRoot;
+        [SerializeField] private RectTransform RebuildLayoutRoot;
 
         private int _scores;
         
@@ -25,11 +27,17 @@ namespace Infrastructure.Views
         public override void Show()
         {
             UpdateView();
+            RebuildLayout();
+        }
+
+        private void RebuildLayout()
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(RebuildLayoutRoot);
         }
 
         public override void UpdateView()
         {
-            if (_scores != _scoresService.Scores)
+            if (_scores != _scoresService.Scores || _scoresService.Scores == 0)
             {
                 int scoresChange = Mathf.Abs(_scoresService.Scores - _scores);
                 ShowAddScoresView(scoresChange);
@@ -41,7 +49,7 @@ namespace Infrastructure.Views
 
         private void ShowAddScoresView(int scores)
         {
-            if (!_scoresSettings.AddScores)
+            if (!_scoresSettings.AddScores || scores == 0)
                 return;
 
             AddScoresView addScorePrefab = _scoresSettings.AddScoresData.ViewPrefab;

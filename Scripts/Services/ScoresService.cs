@@ -7,7 +7,7 @@ namespace Infrastructure.Services
     {
         private ConfigurationService _configurationService;
         private GameFinisherService _gameFinisher;
-        private CommonSettings _commonSettings;
+        private ScoresSettings _scoresSettings;
 
         public int Scores { get; private set; }
         
@@ -19,18 +19,18 @@ namespace Infrastructure.Services
         {
             _gameFinisher = ServiceLocator.GetService<GameFinisherService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
-            _commonSettings = _configurationService.GetSettings<CommonSettings>();
+            _scoresSettings = _configurationService.GetSettings<ScoresSettings>();
         }
 
         public void ResetScores()
         {
             Scores = 0;
-            MaxScores = _commonSettings.ScoresToWin;
+            MaxScores = _scoresSettings.ScoresToWin;
         }
 
         public void AddScores(int matchesCount)
         {
-            int scores = matchesCount * _commonSettings.ScoresForMatch;
+            int scores = matchesCount * _scoresSettings.ScoresForMatch;
             Scores += scores;
             
             ScoresAdded?.Invoke(scores);
