@@ -37,9 +37,10 @@ namespace Infrastructure.Screens
             for (int i = 0; i < _commonSettings.LevelsCount; i++)
             {
                 LevelView levelView = Instantiate(LevelPrefab, Container, false);
-                int levelNumber = i + 1;
+                int level = i + 1;
                 
-                levelView.Construct(levelNumber);
+                levelView.Initialize();
+                levelView.Show(level);
                 
                 _createdLevels.Add(levelView);
             }
@@ -49,7 +50,7 @@ namespace Infrastructure.Screens
         {
             _createdLevels.ForEach(levelView =>
             {
-                levelView.UpdateProgressView();
+                levelView.UpdateView();
             });
         }
     }

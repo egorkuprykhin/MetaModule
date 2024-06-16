@@ -15,6 +15,6 @@ MonoBehaviour:
   MatchedCellScores: 0
   InitialLevelTime: 0
   TimerFromZero: 1
-  LevelsCount: 0
+  LevelsCount: 15
   WinText: Win
   LoseText: Lose

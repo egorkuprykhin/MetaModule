@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Infrastructure.Core;
+using Infrastructure.Data;
 using Infrastructure.Services;
 using TMPro;
 using UnityEngine;
@@ -6,44 +8,64 @@ using UnityEngine.UI;
 
 namespace Infrastructure.Views
 {
-    public class LevelView : MonoBehaviour
+    public class LevelView : MetaView<int>
     {
         [SerializeField] private TMP_Text LevelNumber;
         [SerializeField] private Button LevelButton;
-        [SerializeField] private List<GameObject> ProgressStars;
+        [SerializeField] private Image Locked;
+        [SerializeField] private List<LevelStarData> ProgressStars;
         
         private int _level;
         
         private LevelsService _levelsService;
+        private StartLevelService _startLevelService;
 
-        public void Construct(int level)
+        public override void Initialize()
         {
-            _level = level;
             _levelsService = ServiceLocator.GetService<LevelsService>();
-            
-            InitView(level);
-            UpdateProgressView();
+            _startLevelService = ServiceLocator.GetService<StartLevelService>();
             
             LevelButton.onClick.AddListener(TryStartLevel);
         }
 
-        public void UpdateProgressView()
+        public override void Show(int level)
         {
-            int progressStars = _levelsService.GetLevelProgress(_level);
-            for(int i = 0; i < progressStars; i ++)
-                ProgressStars[i].SetActive(true);
+            _level = level;
+            UpdateView();
+        }
+
+        public void UpdateView()
+        {
+            UpdateLevel();
+            UpdateUnlockedState();
+            UpdateProgressStars();
         }
 
         private void TryStartLevel()
         {
-            StartLevelService startLevelService = ServiceLocator.GetService<StartLevelService>();
-            startLevelService.StartLevelIfUnlocked(_level);
+            _startLevelService.StartLevelIfUnlocked(_level);
         }
 
-        private void InitView(int level)
+        private void UpdateLevel()
         {
-            LevelNumber.text = level.ToString();
-            ProgressStars.ForEach(progressStar => progressStar.SetActive(false));
+            LevelNumber.text = _level.ToString();
+        }
+
+        private void UpdateUnlockedState()
+        {
+            bool isUnlocked = _levelsService.IsLevelUnlocked(_level);
+            Locked.enabled = !isUnlocked;
+        }
+
+        private void UpdateProgressStars()
+        {
+            int stars = _levelsService.GetLevelProgress(_level);
+            ProgressStars.ForEach(progressStar =>
+            {
+                bool starActive = ProgressStars.IndexOf(progressStar) + 1 < stars;
+                progressStar.Star.SetActive(starActive);
+                progressStar.Back.SetActive(!starActive);
+            });
         }
     }
 }
