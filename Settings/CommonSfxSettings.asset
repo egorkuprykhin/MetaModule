@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6ba36f77d64363b41faec59fdb138c, type: 3}
+  m_Name: CommonSfxSettings
+  m_EditorClassIdentifier: 
+  Click: {fileID: 11400000, guid: f5c781aba565246ceb4ad6c16965ac4f, type: 2}
+  WinGame: {fileID: 11400000, guid: 7c98c0c9a405f4898b747bf7db985003, type: 2}
+  LoseGame: {fileID: 11400000, guid: 02ba8a2d1b0f84bf498963ea44706433, type: 2}
