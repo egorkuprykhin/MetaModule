@@ -1,10 +1,12 @@
 using Infrastructure.Attributes;
 using Infrastructure.Services;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Infrastructure.Screens
 {
     [RequireComponent(typeof(Canvas))]
+    [RequireComponent(typeof(GraphicRaycaster))]
     [TopmostComponent]
     public abstract class ScreenBase : MonoBehaviour
     {
