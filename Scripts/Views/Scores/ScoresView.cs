@@ -1,5 +1,6 @@
 using Infrastructure.Core;
 using Infrastructure.Services;
+using Infrastructure.Settings;
 using TMPro;
 using UnityEngine;
 
@@ -9,16 +10,16 @@ namespace Infrastructure.Views
     {
         [SerializeField] private TMP_Text Scores;
         [SerializeField] private Transform AddScoresRoot;
-        [SerializeField] private AddScoresView AddScoresViewPrefab;
 
         private int _scores;
         
         protected ScoresService _scoresService;
-
-
+        private ScoresSettings _scoresSettings;
+        
         public override void Initialize()
         {
             _scoresService = ServiceLocator.GetService<ScoresService>();
+            _scoresSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<ScoresSettings>();
         }
 
         public override void Show()
@@ -40,9 +41,14 @@ namespace Infrastructure.Views
 
         private void ShowAddScoresView(int scores)
         {
-            if (AddScoresViewPrefab && AddScoresRoot)
+            if (!_scoresSettings.AddScores)
+                return;
+
+            AddScoresView addScorePrefab = _scoresSettings.AddScoresData.ViewPrefab;
+            if (addScorePrefab && AddScoresRoot)
             {
-                AddScoresView addScoresView = Instantiate(AddScoresViewPrefab, AddScoresRoot, false);
+                AddScoresView addScoresView = Instantiate(addScorePrefab, AddScoresRoot, false);
+                addScoresView.Initialize();
                 addScoresView.Show(scores);
             }
         }

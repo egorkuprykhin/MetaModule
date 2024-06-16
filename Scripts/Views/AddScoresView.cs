@@ -1,5 +1,7 @@
 using DG.Tweening;
 using Infrastructure.Core;
+using Infrastructure.Services;
+using Infrastructure.Settings;
 using TMPro;
 using UnityEngine;
 
@@ -7,15 +9,19 @@ namespace Infrastructure.Views
 {
     public class AddScoresView : MetaView<int>
     {
-        [SerializeField] private TMP_Text AddScoresText;
-        [SerializeField] private RectTransform AddScoresTransform;
-        [SerializeField] private Vector2 AnimationOffset;
-        [SerializeField] private float AnimationTime;
-        [SerializeField] private float AnimationScaleFactor;
+        [SerializeField] private TMP_Text Text;
+        [SerializeField] private RectTransform Transform;
         
+        private ScoresSettings _scoresSettings;
+
+        public override void Initialize()
+        {
+            _scoresSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<ScoresSettings>();
+        }
+
         public override void Show(int scores)
         {
-            AddScoresText.text = $"+{scores}";
+            Text.text = $"+{scores}";
             AnimateAddScores();
         }
 
@@ -23,14 +29,17 @@ namespace Infrastructure.Views
         {
             DOTween
                 .To(
-                    () => AddScoresTransform.anchoredPosition,
-                    value => AddScoresTransform.anchoredPosition = value,
-                    AddScoresTransform.anchoredPosition + AnimationOffset,
-                    AnimationTime);
+                    () => Transform.anchoredPosition,
+                    value => Transform.anchoredPosition = value,
+                    Transform.anchoredPosition + _scoresSettings.AddScoresData.MoveOffset,
+                    _scoresSettings.AddScoresData.MoveTime)
+                .SetEase(_scoresSettings.AddScoresData.MoveEase);
 
-            AddScoresTransform
-                .DOScale(Vector3.one * AnimationScaleFactor, AnimationTime)
-                .SetEase(Ease.InExpo)
+            Transform
+                .DOScale(
+                    Vector3.one * _scoresSettings.AddScoresData.Scale, 
+                    _scoresSettings.AddScoresData.ScaleTime)
+                .SetEase(_scoresSettings.AddScoresData.ScaleEase)
                 .OnComplete(() => Destroy(gameObject));
         }
     }
