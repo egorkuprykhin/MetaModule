@@ -17,7 +17,8 @@ namespace Infrastructure.Services
 
         public void PostLoadingAction()
         {
-            NextScreen.Show();
+            if(NextScreen)
+                NextScreen.Show();
             _sfxService.PlayBackgroundMusic();
         }
     }

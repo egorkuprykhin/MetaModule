@@ -9,17 +9,17 @@ namespace Infrastructure.Views
         [SerializeField] private Button MusicOffButton;
         [SerializeField] private Button SfxOnButton;
         [SerializeField] private Button SfxOffButton;
-        
-        protected override void OnInitialize()
+
+        protected override void Subscribe()
         {
-            InitButtons();
+            SubscribeButtons();
         }
 
-        protected override void OnShow()
+        protected override void UpdateView()
         {
         }
 
-        private void InitButtons()
+        private void SubscribeButtons()
         {
             if (MusicOnButton)
                 MusicOnButton.onClick.AddListener(() => _sfxService.SetMusicEnabled(true));

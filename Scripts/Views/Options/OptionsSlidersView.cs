@@ -8,16 +8,26 @@ namespace Infrastructure.Views
         [SerializeField] private Slider SoundSlider;
         [SerializeField] private Slider MusicSlider;
 
-        protected override void OnInitialize()
+        protected override void Subscribe()
         {
-            SoundSlider.onValueChanged.AddListener(SoundEnableChanged);
-            MusicSlider.onValueChanged.AddListener(MusicEnableChanged);
+            SubscribeSliders();
         }
 
-        protected override void OnShow()
+        protected override void UpdateView()
+        {
+            UpdateSliderValues();
+        }
+
+        private void UpdateSliderValues()
         {
             SoundSlider.value = _sfxService.SfxVolume;
             MusicSlider.value = _sfxService.MusicVolume;
+        }
+
+        private void SubscribeSliders()
+        {
+            SoundSlider.onValueChanged.AddListener(SoundEnableChanged);
+            MusicSlider.onValueChanged.AddListener(MusicEnableChanged);
         }
 
         private void SoundEnableChanged(float value)

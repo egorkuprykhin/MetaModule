@@ -8,8 +8,18 @@ namespace Infrastructure.Views
         [SerializeField] private Toggle MusicToggle;
         [SerializeField] private Toggle SfxToggle;
         [SerializeField] private Toggle VibrationToggle;
-        
-        protected override void OnInitialize()
+
+        protected override void Subscribe()
+        {
+            SubscribeToggles();
+        }
+
+        protected override void UpdateView()
+        {
+            UpdateToggleValues();
+        }
+
+        private void SubscribeToggles()
         {
             if (MusicToggle)
                 MusicToggle.onValueChanged.AddListener(SwitchEnableMusic);
@@ -21,7 +31,7 @@ namespace Infrastructure.Views
                 VibrationToggle.onValueChanged.AddListener(SwitchEnableVibration);
         }
 
-        protected override void OnShow()
+        private void UpdateToggleValues()
         {
             if (MusicToggle)
                 MusicToggle.isOn = _sfxService.MusicEnabled;

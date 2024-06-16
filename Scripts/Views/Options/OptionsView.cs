@@ -1,37 +1,35 @@
 using Infrastructure.Attributes;
-using Infrastructure.Common;
+using Infrastructure.Core;
 using Infrastructure.Services;
-using UnityEngine;
 
 namespace Infrastructure.Views
 {
     [TopmostComponent]
-    public abstract class OptionsView : MonoBehaviour, IInitializable
+    public abstract class OptionsView : MetaView
     {
         protected SfxService _sfxService;
         protected VibrationService _vibrationService;
 
-        public void Initialize()
+        public override void Initialize()
         {
             _sfxService = ServiceLocator.GetService<SfxService>();
             _vibrationService = ServiceLocator.GetService<VibrationService>();
             
-            OnInitialize();
+            Subscribe();
         }
-
-        public void Show()
+        
+        public override void Show()
         {
-            OnShow();
+            UpdateView();
         }
 
-        public void Hide()
+        public override void Hide()
         {
             _sfxService.SaveSettings();
             _vibrationService.SaveSettings();
         }
 
-        protected abstract void OnInitialize();
-
-        protected abstract void OnShow();
+        protected abstract void Subscribe();
+        protected abstract void UpdateView();
     }
 }

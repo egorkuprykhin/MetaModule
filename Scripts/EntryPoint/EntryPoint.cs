@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Infrastructure.Core;
 using Infrastructure.Screens;
 using Infrastructure.Services;
@@ -22,8 +23,10 @@ namespace Infrastructure.Common
             ScreensLocator.Initialize();
         }
 
-        private void Start()
+        private async void Start()
         {
+            await Task.Yield();
+            
             LoadingScreen loadingScreen = ScreenLocator.GetScreen<LoadingScreen>();
             loadingScreen.Show();
         }

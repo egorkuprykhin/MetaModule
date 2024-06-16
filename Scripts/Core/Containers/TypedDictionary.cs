@@ -13,7 +13,12 @@ namespace Infrastructure.Common
         
         public TRequest Get<TRequest>() where TRequest : class, TEntry
         {
-            return _entries[typeof(TRequest)] as TRequest;
+            Type type = typeof(TRequest);
+            
+            if (_entries.TryGetValue(type, out TEntry entry))
+                return entry as TRequest;
+            
+            return null;
         }
 
         public TRequest Create<TRequest>() where TRequest : class, TEntry, new()

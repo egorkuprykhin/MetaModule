@@ -6,20 +6,38 @@ namespace Infrastructure.Screens
     public class OptionsScreen : ScreenBase, IInitializableScreen
     {
         [SerializeField] private OptionsView OptionsView;
-        
+
         public void Initialize()
         {
-            OptionsView.Initialize();
+            InitViews();
         }
 
         protected override void OnShow()
         {
-            OptionsView.Show();
+            ShowViews();
         }
 
         protected override void OnHide()
         {
-            OptionsView.Hide();
+            HideViews();
+        }
+
+        private void InitViews()
+        {
+            if (OptionsView)
+                OptionsView.Initialize();
+        }
+
+        private void ShowViews()
+        {
+            if (OptionsView)
+                OptionsView.Show();
+        }
+
+        private void HideViews()
+        {
+            if (OptionsView)
+                OptionsView.Hide();
         }
     }
 }
