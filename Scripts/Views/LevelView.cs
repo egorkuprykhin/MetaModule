@@ -62,7 +62,7 @@ namespace Infrastructure.Views
             int stars = _levelsService.GetLevelProgress(_level);
             ProgressStars.ForEach(progressStar =>
             {
-                bool starActive = ProgressStars.IndexOf(progressStar) + 1 < stars;
+                bool starActive = ProgressStars.IndexOf(progressStar) < stars;
                 progressStar.Star.SetActive(starActive);
                 progressStar.Back.SetActive(!starActive);
             });

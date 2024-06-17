@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4323e751e28a4f43b0b20b12a74ca13a, type: 3}
   m_Name: CommonGameSettings
   m_EditorClassIdentifier: 
-  MatchedCellScores: 0
   InitialLevelTime: 0
+  Time3Stars: 45
+  Time2Stars: 75
   TimerFromZero: 1
   LevelsCount: 15
   WinText: Win

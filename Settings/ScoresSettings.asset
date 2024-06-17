@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f292555980044809b29760ec0fac2f00, type: 3}
   m_Name: ScoresSettings
   m_EditorClassIdentifier: 
-  ScoresForMatch: 30
+  ScoresForMatch: 20
   ScoresToWin: 1500
   AddScores: 1
   AddScoresData:

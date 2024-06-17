@@ -36,7 +36,8 @@ namespace Infrastructure.Services
 
         public void PlaySfx(SfxType sfxType)
         {
-            SfxSoundAudioSource.PlayOneShot(sfxType.AudioClip);
+            if (sfxType.AudioClip)
+                SfxSoundAudioSource.PlayOneShot(sfxType.AudioClip);
         }
 
         public void SwitchMusicEnabled()

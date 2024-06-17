@@ -9,10 +9,13 @@ namespace Infrastructure.Services
         private ConfigurationService _configurationService;
         private CommonSettings _commonSettings;
         private SfxSettings _sfxSettings;
+        private TimerService _timerService;
 
         public void Initialize()
         {
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
+            _timerService = ServiceLocator.GetService<TimerService>();
+            
             _commonSettings = _configurationService.GetSettings<CommonSettings>();
             _sfxSettings = _configurationService.GetSettings<SfxSettings>();
         }
@@ -22,7 +25,8 @@ namespace Infrastructure.Services
         public void CalculateGameResult()
         {
             GameResultData.Result = GameResult.Win;
-            GameResultData.Stars = 3;
+            GameResultData.FinishTime = _timerService.CurrentTime;
+            GameResultData.Stars = CalculateStars();
         }
 
         public void ResetGameResult()
@@ -43,5 +47,16 @@ namespace Infrastructure.Services
             GameResult.Lose => _sfxSettings.LoseGame,
             _ => _sfxSettings.WinGame
         };
+        
+        private int CalculateStars()
+        {
+            if (GameResultData.FinishTime <= _commonSettings.Time3Stars)
+                return 3;
+            
+            if (GameResultData.FinishTime >= _commonSettings.Time2Stars)
+                return 2;
+
+            return 1;
+        }
     }
 }

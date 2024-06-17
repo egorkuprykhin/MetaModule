@@ -7,7 +7,8 @@ namespace Infrastructure.Settings
     public class CommonSettings : SettingsBase
     {
         [SerializeField] public int InitialLevelTime;
-        [SerializeField] public int ProgressiveLevelTime;
+        [SerializeField] public int Time3Stars;
+        [SerializeField] public int Time2Stars;
         [SerializeField] public bool TimerFromZero;
         [SerializeField] public int LevelsCount;
         [SerializeField] public string WinText;

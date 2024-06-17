@@ -3,6 +3,7 @@ namespace Infrastructure.Data
     public class GameResultData
     {
         public GameResult Result = GameResult.Undefined;
+        public float FinishTime = 0;
         public int Stars = 0;
 
         public bool IsWin() => Result == GameResult.Win;
