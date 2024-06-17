@@ -8,7 +8,7 @@ namespace Infrastructure.Services
 
         private ConfigurationService _configurationService;
         private GameLifecycleService _lifecycleService;
-        private GameFinisherService _gameFinisherService;
+        private CoreFinisherService _coreFinisherService;
 
         private CommonSettings _commonSettings;
 
@@ -22,7 +22,7 @@ namespace Infrastructure.Services
         {
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _lifecycleService = ServiceLocator.GetService<GameLifecycleService>();
-            _gameFinisherService = ServiceLocator.GetService<GameFinisherService>();
+            _coreFinisherService = ServiceLocator.GetService<CoreFinisherService>();
 
             _commonSettings = _configurationService.GetSettings<CommonSettings>();
         }
@@ -68,7 +68,7 @@ namespace Infrastructure.Services
 
         private void TimeIsUp()
         {
-            _gameFinisherService.FinishGame();
+            _coreFinisherService.FinishGame();
         }
     }
 }

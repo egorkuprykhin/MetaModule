@@ -12,9 +12,9 @@ namespace Registrations
             registrar.Register<GameLifecycleService>();
             registrar.Register<PlayerDataService>();
             registrar.Register<LevelsService>();
-            registrar.Register<GameFinisherService>();
+            registrar.Register<CoreFinisherService>();
             registrar.Register<TimerService>();
-            registrar.Register<GameStarterService>();
+            registrar.Register<CoreStarterService>();
             registrar.Register<GameResultService>();
             registrar.Register<StartLevelService>();
             registrar.Register<ExitGameService>();

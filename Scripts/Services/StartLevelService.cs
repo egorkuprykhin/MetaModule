@@ -5,14 +5,14 @@ namespace Infrastructure.Services
     public class StartLevelService : IInitializableService
     {
         private LevelsService _levelsService;
-        private GameStarterService _gameStarterService;
+        private CoreStarterService _coreStarterService;
         private LevelsScreen _levelsScreen;
 
         public void Initialize()
         {
             _levelsService = ServiceLocator.GetService<LevelsService>();
             _levelsScreen = ScreenLocator.GetScreen<LevelsScreen>();
-            _gameStarterService = ServiceLocator.GetService<GameStarterService>();
+            _coreStarterService = ServiceLocator.GetService<CoreStarterService>();
         }
 
         public void StartLevelIfUnlocked(int level)
@@ -23,7 +23,7 @@ namespace Infrastructure.Services
                 
                 _levelsService.SetCurrentLevel(level);
                 
-                _gameStarterService.StartGame();
+                _coreStarterService.StartCore();
             }
         }
     }

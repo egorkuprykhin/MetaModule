@@ -20,7 +20,7 @@ namespace Infrastructure.Services
             InitPlayerData();
         }
 
-        public void ResetSeed()
+        public void InitSeed()
         {
             InitRandomSeed();
         }

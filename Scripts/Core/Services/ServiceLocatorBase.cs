@@ -16,13 +16,34 @@ namespace Infrastructure.Services.Internal
             return _services.Get<TService>();
         }
 
-        protected void Register<TService>() where TService : class, IService, new()
+        protected TService Register<TService>() where TService : class, IService, new()
         {
             if (!_services.Has<TService>())
             {
-                TService service = _services.Create<TService>();
-                RegisterInterfaces(service);
+                TService instance = _services.Create<TService>();
+                RegisterInterfaces(instance);
+
+                return instance;
             }
+
+            return GetService<TService>();
+        }
+
+        protected void Register<TInterface, TService>(TService instance)
+            where TInterface : IService
+            where TService : MonoService, TInterface
+        {
+            
+            Register(typeof(TService), instance);
+            RegisterInterface<TInterface, TService>(instance);
+        }
+        
+        protected void Register<TInterface, TService>()
+            where TInterface : IService
+            where TService : class, TInterface, new()
+        {
+            TService instance = Register<TService>();
+            RegisterInterface<TInterface, TService>(instance);
         }
 
         protected void Register(Type type, MonoService service)
@@ -42,6 +63,14 @@ namespace Infrastructure.Services.Internal
         protected void UpdateServices(float dt)
         {
             _updatableServices.ForEach( service => service.UpdateService(dt));
+        }
+
+        private void RegisterInterface<TInterface, TService>(TService instance)
+            where TInterface : IService
+            where TService : class, TInterface
+        {
+            if (!_services.Has<TInterface>()) 
+                _services.Register(typeof(TInterface), instance);
         }
 
         private void RegisterInterfaces(IService service)

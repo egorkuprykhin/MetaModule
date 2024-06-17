@@ -12,12 +12,12 @@ namespace Infrastructure.Components
     public class PlaySfxOnValueChanged : MonoBehaviour
     {
         private SfxService _sfxService;
-        private CommonSfxSettings _commonSfxSettings;
+        private SfxSettings _sfxSettings;
 
         private void Start()
         {
             _sfxService = ServiceLocator.GetService<SfxService>();
-            _commonSfxSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<CommonSfxSettings>();
+            _sfxSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<SfxSettings>();
             
             RegisterCall();
         }
@@ -33,7 +33,7 @@ namespace Infrastructure.Components
 
         private void PlayAudioCLip()
         {
-            _sfxService.PlaySfx(_commonSfxSettings.Click);
+            _sfxService.PlaySfx(_sfxSettings.Click);
         }
     }
 }

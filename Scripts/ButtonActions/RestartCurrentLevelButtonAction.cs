@@ -7,18 +7,18 @@ namespace Infrastructure.ButtonActions
     [TopmostComponent(Order = 0)]
     public class RestartCurrentLevelButtonAction : ButtonAction
     {
-        private GameStarterService _gameStarterService;
+        private CoreStarterService _coreStarterService;
         private ResultScreen _resultScreen;
 
         public override void Action()
         {
             _resultScreen.Hide();
-            _gameStarterService.StartGame();
+            _coreStarterService.StartCore();
         }
 
         protected override void Initialize()
         {
-            _gameStarterService = ServiceLocator.GetService<GameStarterService>();
+            _coreStarterService = ServiceLocator.GetService<CoreStarterService>();
             _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
         }
     }

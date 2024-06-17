@@ -8,17 +8,17 @@ namespace Infrastructure.ButtonActions
     public class PlayClickSfxButtonAction : ButtonAction
     {
         private SfxService _sfxService;
-        private CommonSfxSettings _commonSfxSettings;
+        private SfxSettings _sfxSettings;
 
         public override void Action()
         {
-            _sfxService.PlaySfx(_commonSfxSettings.Click);
+            _sfxService.PlaySfx(_sfxSettings.Click);
         }
 
         protected override void Initialize()
         {
             _sfxService = ServiceLocator.GetService<SfxService>();
-            _commonSfxSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<CommonSfxSettings>();
+            _sfxSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<SfxSettings>();
         }
     }
 }

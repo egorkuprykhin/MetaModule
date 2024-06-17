@@ -1,14 +1,16 @@
+using Core.Services;
 using Infrastructure.Screens;
 
 namespace Infrastructure.Services
 {
-    public class GameStarterService : IInitializableService
+    public class CoreStarterService : IInitializableService
     {
         private TimerService _timerService;
         private GameLifecycleService _gameLifecycleService;
         private GameResultService _gameResultService;
         private ScoresService _scoresService;
         private PlayerDataService _playerDataService;
+        private IGameStarterService _gameStarterService;
         
         private GameScreen _gameScreen;
 
@@ -19,26 +21,29 @@ namespace Infrastructure.Services
             _gameResultService = ServiceLocator.GetService<GameResultService>();
             _scoresService = ServiceLocator.GetService<ScoresService>();
             _playerDataService = ServiceLocator.GetService<PlayerDataService>();
+            _gameStarterService = ServiceLocator.GetService<IGameStarterService>();
             
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
         }
 
-        public void StartGame()
+        public void StartCore()
         {
             ResetServices();
             StartServices();
             ShowGameScreen();
+            
+            _gameStarterService?.StartGame();
         }
 
         private void ResetServices()
         {
             _scoresService.ResetScores();
             _gameResultService.ResetGameResult();
-            _playerDataService.ResetSeed();
         }
 
         private void StartServices()
         {
+            _playerDataService.InitSeed();
             _timerService.StartTimer();
             _gameLifecycleService.StartGame();
         }

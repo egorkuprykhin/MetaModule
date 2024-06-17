@@ -50,11 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d862fead65c14b7fa939de2606e2169d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AddScoresText: {fileID: 9201817919979868772}
-  AddScoresTransform: {fileID: 7431109320706262251}
-  AnimationOffset: {x: 0, y: 20}
-  AnimationTime: 1
-  AnimationScaleFactor: 0
+  Text: {fileID: 9201817919979868772}
+  Transform: {fileID: 7431109320706262251}
 --- !u!222 &385523162678587717
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -85,15 +82,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: +30
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d45d583a11bd74b8e9ca337e2c9e44fd, type: 2}
-  m_sharedMaterial: {fileID: 3575015896286124176, guid: d45d583a11bd74b8e9ca337e2c9e44fd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c94e5d5791764bc99a7cf4bed3f6c1f, type: 2}
+  m_sharedMaterial: {fileID: 7091429312090027212, guid: 7c94e5d5791764bc99a7cf4bed3f6c1f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294111989
-  m_fontColor: {r: 0.9622642, g: 0.94864726, b: 0.94864726, a: 1}
+    rgba: 4282532550
+  m_fontColor: {r: 0.7764706, g: 0.25882354, b: 0.25882354, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:

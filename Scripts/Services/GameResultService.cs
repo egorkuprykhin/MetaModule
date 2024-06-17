@@ -8,12 +8,13 @@ namespace Infrastructure.Services
     {
         private ConfigurationService _configurationService;
         private CommonSettings _commonSettings;
-        private CommonSfxSettings _commonSfxSettings;
+        private SfxSettings _sfxSettings;
 
         public void Initialize()
         {
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _commonSettings = _configurationService.GetSettings<CommonSettings>();
+            _sfxSettings = _configurationService.GetSettings<SfxSettings>();
         }
 
         public GameResultData GameResultData { get; private set; } = new GameResultData();
@@ -38,9 +39,9 @@ namespace Infrastructure.Services
 
         public SfxType ResultSfx() => GameResultData.Result switch
         {
-            GameResult.Win => _commonSfxSettings.WinGame,
-            GameResult.Lose => _commonSfxSettings.LoseGame,
-            _ => _commonSfxSettings.WinGame
+            GameResult.Win => _sfxSettings.WinGame,
+            GameResult.Lose => _sfxSettings.LoseGame,
+            _ => _sfxSettings.WinGame
         };
     }
 }

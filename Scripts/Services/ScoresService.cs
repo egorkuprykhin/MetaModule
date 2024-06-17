@@ -6,7 +6,7 @@ namespace Infrastructure.Services
     public class ScoresService : IInitializableService
     {
         private ConfigurationService _configurationService;
-        private GameFinisherService _gameFinisher;
+        private CoreFinisherService _coreFinisher;
         private ScoresSettings _scoresSettings;
 
         public int Scores { get; private set; }
@@ -17,7 +17,7 @@ namespace Infrastructure.Services
 
         public void Initialize()
         {
-            _gameFinisher = ServiceLocator.GetService<GameFinisherService>();
+            _coreFinisher = ServiceLocator.GetService<CoreFinisherService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _scoresSettings = _configurationService.GetSettings<ScoresSettings>();
         }
@@ -41,7 +41,7 @@ namespace Infrastructure.Services
 
         private void WinGameByScores()
         {
-            _gameFinisher.FinishGame();
+            _coreFinisher.FinishGame();
         }
     }
 }

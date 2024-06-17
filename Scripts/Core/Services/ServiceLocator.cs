@@ -1,5 +1,4 @@
 using System;
-using Infrastructure.Common;
 using Infrastructure.Core;
 using Infrastructure.Services.Internal;
 using Services.Core;
@@ -19,8 +18,18 @@ namespace Infrastructure.Services
             where TService : class, IService, new() => 
             base.Register<TService>();
 
+        public new void Register<TInterface, TService>()
+            where TInterface : IService 
+            where TService : class, TInterface, new() =>
+            base.Register<TInterface, TService>();
+
         public new void Register(Type type, MonoService service) => 
             base.Register(type, service);
+
+        public new void Register<TInterface, TService>(TService instance) 
+            where TInterface : IService 
+            where TService : MonoService, TInterface =>
+            base.Register<TInterface, TService>(instance);
 
         public new void Initialize() => 
             base.Initialize();

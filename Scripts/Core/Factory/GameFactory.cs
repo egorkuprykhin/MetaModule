@@ -1,25 +1,22 @@
 using System;
 using System.Collections.Generic;
+using Core.Services;
+using Infrastructure.Common;
 using Infrastructure.Services;
 using Services.Core;
 using UnityEngine;
 
 namespace Infrastructure.Core
 {
-    public abstract class GameFactory<TGameSettings, TSfxSettings, TAnimationSettings> : 
-        MonoService, 
-        IInitializableService
-        where TGameSettings : GameSettingsBase
-        where TSfxSettings : SfxSettingBase
-        where TAnimationSettings : AnimationSettingsBase
+    public abstract class GameFactory<T> : MonoService, IInitializableService where T : IConfigurationService
     {
         [SerializeField] private List<GameViewBase> Prefabs;
         
-        private ConfigurationService _configurationService;
+        private IConfigurationService _configurationService;
 
-        public void Initialize()
+        public virtual void Initialize()
         {
-            _configurationService = ServiceLocator.GetService<ConfigurationService>();
+            _configurationService = ServiceLocator.GetService<IConfigurationService>();
         }
 
         public TView CreateView<TView>(Transform parent) where TView : GameViewBase
@@ -29,15 +26,7 @@ namespace Infrastructure.Core
                 if (gameView is TView view)
                 {
                     TView instance = Instantiate(view, parent, false);
-                    
-                    if (instance is GameView<TGameSettings, TSfxSettings, TAnimationSettings> gameViewInstance)
-                    {
-                        TGameSettings settings = _configurationService.GetSettings<TGameSettings>();
-                        TSfxSettings sfxSettings = _configurationService.GetSettings<TSfxSettings>();
-                        TAnimationSettings animationSettings = _configurationService.GetSettings<TAnimationSettings>();
-                        
-                        gameViewInstance.Construct(settings, sfxSettings, animationSettings);
-                    }
+                    instance.Construct(_configurationService.Configuration);
                     
                     return instance;
                 }
