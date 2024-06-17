@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CommonGameSettings
   m_EditorClassIdentifier: 
   InitialLevelTime: 0
-  Time3Stars: 45
-  Time2Stars: 75
+  Time3Stars: 30
+  Time2Stars: 60
   TimerFromZero: 1
   LevelsCount: 15
   WinText: Win

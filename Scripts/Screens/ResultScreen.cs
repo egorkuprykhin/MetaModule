@@ -32,12 +32,15 @@ namespace Infrastructure.Screens
             
             if (TimerView)
                 TimerView.Initialize();
+            
+            if (StarsView)
+                StarsView.Initialize();
         }
 
         protected override void OnShow()
         {
             if (StarsView)
-                StarsView.ShowAnimation();
+                StarsView.Show();
             ShowResults();
         }
 

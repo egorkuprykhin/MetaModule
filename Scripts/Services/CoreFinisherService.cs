@@ -29,6 +29,8 @@ namespace Infrastructure.Services
             _gameLifecycleService.StopGame();
             _gameResultService.CalculateGameResult();
             _playerDataService.UpdateCurrentLevelProgress();
+            _playerDataService.SavePlayerData();
+            
             _gameFinisher?.FinishGame();
 
             _gameScreen.Hide();

@@ -20,6 +20,8 @@ namespace Infrastructure.Services
             InitPlayerData();
         }
 
+        public void SavePlayerData() => _saveLoadService.SavePlayerData(PlayerData);
+
         public void InitSeed()
         {
             InitRandomSeed();
@@ -43,9 +45,7 @@ namespace Infrastructure.Services
             InitRandomSeed();
             SavePlayerData();
         }
-        
-        private void InitRandomSeed() => Random.InitState(_seedHash);
 
-        private void SavePlayerData() => _saveLoadService.SavePlayerData(PlayerData);
+        private void InitRandomSeed() => Random.InitState(_seedHash);
     }
 }

@@ -39,8 +39,11 @@ namespace Infrastructure.Views
         {
             if (_scores != _scoresService.Scores || _scoresService.Scores == 0)
             {
-                int scoresChange = Mathf.Abs(_scoresService.Scores - _scores);
-                ShowAddScoresView(scoresChange);
+                if (_scoresService.Scores != 0)
+                {
+                    int scoresChange = Mathf.Abs(_scoresService.Scores - _scores);
+                    ShowAddScoresView(scoresChange);
+                }
 
                 _scores = _scoresService.Scores;
                 Scores.text = _scores.ToString();

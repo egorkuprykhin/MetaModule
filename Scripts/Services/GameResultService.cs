@@ -53,7 +53,7 @@ namespace Infrastructure.Services
             if (GameResultData.FinishTime <= _commonSettings.Time3Stars)
                 return 3;
             
-            if (GameResultData.FinishTime >= _commonSettings.Time2Stars)
+            if (GameResultData.FinishTime <= _commonSettings.Time2Stars)
                 return 2;
 
             return 1;
