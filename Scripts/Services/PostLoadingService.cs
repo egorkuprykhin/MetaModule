@@ -1,3 +1,4 @@
+using Game.Services;
 using Infrastructure.Screens;
 using Services.Core;
 using UnityEngine;
@@ -9,17 +10,21 @@ namespace Infrastructure.Services
         [SerializeField] private ScreenBase NextScreen;
         
         private SfxService _sfxService;
+        private BlurService _blurService;
 
         public void Initialize()
         {
             _sfxService = ServiceLocator.GetService<SfxService>();
+            _blurService = ServiceLocator.GetService<BlurService>();
         }
 
         public void PostLoadingAction()
         {
-            if(NextScreen)
-                NextScreen.Show();
+            _blurService.EnableBlur();
             _sfxService.PlayBackgroundMusic();
+            
+            if (NextScreen)
+                NextScreen.Show();
         }
     }
 }

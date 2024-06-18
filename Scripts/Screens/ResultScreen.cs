@@ -12,21 +12,19 @@ namespace Infrastructure.Screens
     {
         [SerializeField] private Button NextLevelButton;
         [SerializeField] private Button TryAgainButton;
-        [SerializeField] private TMP_Text ScoresText;
         [SerializeField] private TMP_Text ResultText;
         [SerializeField] private TimerView TimerView;
         [SerializeField] private GameObject ViewWhenLose;
         [SerializeField] private StarsView StarsView;
+        [SerializeField] private ScoresView ScoresView;
 
         private LevelsService _levelsService;
-        private ScoresService _scoresService;
         private SfxService _sfxService;
         private GameResultService _gameResultService;
 
         public void Initialize()
         {
             _levelsService = ServiceLocator.GetService<LevelsService>();
-            _scoresService = ServiceLocator.GetService<ScoresService>();
             _sfxService = ServiceLocator.GetService<SfxService>();
             _gameResultService = ServiceLocator.GetService<GameResultService>();
             
@@ -35,12 +33,18 @@ namespace Infrastructure.Screens
             
             if (StarsView)
                 StarsView.Initialize();
+            
+            if (ScoresView)
+                ScoresView.Initialize();
         }
 
         protected override void OnShow()
         {
             if (StarsView)
                 StarsView.Show();
+            if (ScoresView)
+                ScoresView.Show();
+            
             ShowResults();
         }
 
@@ -57,9 +61,6 @@ namespace Infrastructure.Screens
             
             if (ViewWhenLose)
                 ViewWhenLose.SetActive(gameResultData.IsLose());
-
-            if (ScoresText)
-                ScoresText.text = _scoresService.Scores.ToString();
 
             if (ResultText)
                 ResultText.text = _gameResultService.ResultText();

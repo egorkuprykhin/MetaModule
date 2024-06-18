@@ -10,6 +10,7 @@ namespace Infrastructure.Views
     public class ScoresView : MetaView
     {
         [SerializeField] private TMP_Text Scores;
+        [SerializeField] private bool AddScores;
         [SerializeField] private Transform AddScoresRoot;
         [SerializeField] private RectTransform RebuildLayoutRoot;
 
@@ -52,7 +53,7 @@ namespace Infrastructure.Views
 
         private void ShowAddScoresView(int scores)
         {
-            if (!_scoresSettings.AddScores || scores == 0)
+            if (!_scoresSettings.AddScores || !AddScores || scores == 0)
                 return;
 
             AddScoresView addScorePrefab = _scoresSettings.AddScoresData.ViewPrefab;

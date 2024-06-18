@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Core;
 using Infrastructure.Screens;
 using Infrastructure.Services;
@@ -25,7 +25,7 @@ namespace Infrastructure.Common
 
         private async void Start()
         {
-            await Task.Yield();
+            await UniTask.NextFrame();
             
             LoadingScreen loadingScreen = ScreenLocator.GetScreen<LoadingScreen>();
             loadingScreen.Show();

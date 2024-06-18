@@ -18,7 +18,7 @@ namespace Infrastructure.Views
 
         public override void Show()
         {
-            Level.text = _levelsService.GetCurrentLevel().ToString();
+            Level.text = _levelsService.CurrentLevel.ToString();
         }
     }
 }

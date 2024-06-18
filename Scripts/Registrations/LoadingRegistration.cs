@@ -17,6 +17,7 @@ namespace Registrations
             registrar.Register<CoreStarterService>();
             registrar.Register<GameResultService>();
             registrar.Register<StartLevelService>();
+            registrar.Register<ProgressionService>();
             registrar.Register<ExitGameService>();
         }
     }
