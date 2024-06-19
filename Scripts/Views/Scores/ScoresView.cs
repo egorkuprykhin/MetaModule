@@ -33,7 +33,8 @@ namespace Infrastructure.Views
 
         private void RebuildLayout()
         {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(RebuildLayoutRoot);
+            if (RebuildLayoutRoot)
+                LayoutRebuilder.ForceRebuildLayoutImmediate(RebuildLayoutRoot);
         }
 
         public override void UpdateView()

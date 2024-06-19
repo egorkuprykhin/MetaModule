@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f292555980044809b29760ec0fac2f00, type: 3}
   m_Name: ScoresSettings
   m_EditorClassIdentifier: 
-  ScoresForMatch: 20
+  ScoresForMatch: 10
   ScoresToWin: 1500
-  AddScores: 1
+  WinByScores: 0
+  AddScores: 0
   AddScoresData:
     ViewPrefab: {fileID: 748247100449151359, guid: e158151f36a4e439e80ce44645d07921, type: 3}
     MoveOffset: {x: 0, y: -25}
