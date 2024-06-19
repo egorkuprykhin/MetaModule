@@ -17,6 +17,7 @@ namespace Infrastructure.Screens
         [SerializeField] private GameObject ViewWhenLose;
         [SerializeField] private StarsView StarsView;
         [SerializeField] private ScoresView ScoresView;
+        [SerializeField] private CurrentLevelView LevelView;
 
         private LevelsService _levelsService;
         private SfxService _sfxService;
@@ -36,6 +37,9 @@ namespace Infrastructure.Screens
             
             if (ScoresView)
                 ScoresView.Initialize();
+            
+            if (LevelView)
+                LevelView.Initialize();
         }
 
         protected override void OnShow()
@@ -44,6 +48,8 @@ namespace Infrastructure.Screens
                 StarsView.Show();
             if (ScoresView)
                 ScoresView.Show();
+            if (LevelView)
+                LevelView.Show();
             
             ShowResults();
         }

@@ -1,4 +1,4 @@
-using Core.Services;
+using Core.Game;
 using Infrastructure.Screens;
 
 namespace Infrastructure.Services
@@ -8,7 +8,7 @@ namespace Infrastructure.Services
         private GameLifecycleService _gameLifecycleService;
         private GameResultService _gameResultService;
         private PlayerDataService _playerDataService;
-        private IGameFinisherService _gameFinisher;
+        private IGameService _gameService;
 
         private ResultScreen _resultScreen;
         private GameScreen _gameScreen;
@@ -18,7 +18,7 @@ namespace Infrastructure.Services
             _gameLifecycleService = ServiceLocator.GetService<GameLifecycleService>();
             _gameResultService = ServiceLocator.GetService<GameResultService>();
             _playerDataService = ServiceLocator.GetService<PlayerDataService>();
-            _gameFinisher = ServiceLocator.GetService<IGameFinisherService>();
+            _gameService = ServiceLocator.GetService<IGameService>();
             
             _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
@@ -31,7 +31,7 @@ namespace Infrastructure.Services
             _playerDataService.UpdateCurrentLevelProgress();
             _playerDataService.SavePlayerData();
             
-            _gameFinisher?.FinishGame();
+            _gameService?.ClearField();
 
             _gameScreen.Hide();
             _resultScreen.Show();

@@ -16,6 +16,6 @@ MonoBehaviour:
   Time3Stars: 30
   Time2Stars: 60
   TimerFromZero: 1
-  LevelsCount: 15
+  LevelsCount: 12
   WinText: Win
   LoseText: Lose

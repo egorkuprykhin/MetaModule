@@ -9,13 +9,6 @@ namespace Infrastructure.Services
         [SerializeField] private AudioSource SfxSoundAudioSource;
         [SerializeField] private AudioSource MusicAudioSource;
         
-        
-        [SerializeField] private AudioClip UiClick;
-        [SerializeField] private AudioClip MatchChip;
-        [SerializeField] private AudioClip SwapChip;
-        [SerializeField] private AudioClip AppearChip;
-        [SerializeField] private AudioClip WinGame;
-        
         private OptionsDataService _optionsDataService;
 
         public bool SfxEnabled => _optionsDataService.OptionsData.SfxVolume > 0;

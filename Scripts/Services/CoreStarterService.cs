@@ -1,3 +1,4 @@
+using Core.Game;
 using Core.Services;
 using Infrastructure.Screens;
 
@@ -10,7 +11,7 @@ namespace Infrastructure.Services
         private GameResultService _gameResultService;
         private ScoresService _scoresService;
         private PlayerDataService _playerDataService;
-        private IGameStarterService _gameStarterService;
+        private IGameService _gameStarterService;
         
         private GameScreen _gameScreen;
 
@@ -21,7 +22,7 @@ namespace Infrastructure.Services
             _gameResultService = ServiceLocator.GetService<GameResultService>();
             _scoresService = ServiceLocator.GetService<ScoresService>();
             _playerDataService = ServiceLocator.GetService<PlayerDataService>();
-            _gameStarterService = ServiceLocator.GetService<IGameStarterService>();
+            _gameStarterService = ServiceLocator.GetService<IGameService>();
             
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
         }
@@ -32,7 +33,7 @@ namespace Infrastructure.Services
             StartServices();
             ShowGameScreen();
             
-            _gameStarterService?.StartGame();
+            _gameStarterService?.CreateField();
         }
 
         private void ResetServices()

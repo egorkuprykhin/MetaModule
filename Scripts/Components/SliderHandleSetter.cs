@@ -8,7 +8,11 @@ namespace Infrastructure.Components
         public Slider Slider;
         public Image Handle;
         public Sprite EnabledHandleSprite;
+        public Color EnabledColor;
         public Sprite DisabledHandleSprite;
+        public Color DisabledColor;
+        public bool ChangeSprites;
+        public bool ChangeColors;
 
         private void Awake()
         {
@@ -18,10 +22,17 @@ namespace Infrastructure.Components
 
         private void OnSliderValueChanged(float value)
         {
-            Handle.sprite = 
-                value == 0 
-                    ? DisabledHandleSprite 
-                    : EnabledHandleSprite;
+            if (ChangeSprites)
+                Handle.sprite =
+                    value == 0
+                        ? DisabledHandleSprite
+                        : EnabledHandleSprite;
+
+            if (ChangeColors)
+                Handle.color =
+                    value == 0
+                        ? DisabledColor
+                        : EnabledColor;
         }
     }
 }

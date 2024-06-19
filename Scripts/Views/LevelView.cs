@@ -12,7 +12,8 @@ namespace Infrastructure.Views
     {
         [SerializeField] private TMP_Text LevelNumber;
         [SerializeField] private Button LevelButton;
-        [SerializeField] private Image Locked;
+        [SerializeField] private GameObject HideWhenLocked;
+        [SerializeField] private GameObject ShowWhenLocked;
         [SerializeField] private List<LevelStarData> ProgressStars;
         
         private int _level;
@@ -48,13 +49,14 @@ namespace Infrastructure.Views
 
         private void UpdateLevel()
         {
-            LevelNumber.text = _level.ToString();
+            LevelNumber.text = _level.ToString(format:"00");
         }
 
         private void UpdateUnlockedState()
         {
             bool isUnlocked = _levelsService.IsLevelUnlocked(_level);
-            Locked.enabled = !isUnlocked;
+            HideWhenLocked.SetActive(isUnlocked);
+            ShowWhenLocked.SetActive(!isUnlocked);
         }
 
         private void UpdateProgressStars()

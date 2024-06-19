@@ -7,19 +7,18 @@ namespace Infrastructure.Views
     {
         [SerializeField] private RectTransform Parent;
         [SerializeField] private RectTransform Target;
+        [SerializeField] private int MaxSize;
 
         private float _minSize;
-        private float _maxSize;
 
         public override void Initialize()
         {
             _minSize = Target.sizeDelta.x;
-            _maxSize = Parent.sizeDelta.x;
         }
 
         protected override void AdjustVisual(float factor)
         {
-            float sizeX = _minSize + (_maxSize - _minSize) * factor;
+            float sizeX = _minSize + (MaxSize - _minSize) * factor;
             Target.sizeDelta = new Vector2(sizeX, Target.sizeDelta.y);
         }
     }
