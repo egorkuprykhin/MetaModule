@@ -137,16 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e892ae071864f7babf27ac2a4acd702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Screens:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Screens: []
 --- !u!1 &1462548529890264343
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,11 +665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SfxSoundAudioSource: {fileID: 1462548530059295244}
   MusicAudioSource: {fileID: 1462548530946537769}
-  UiClick: {fileID: 8300000, guid: 31e825bbc26ad4637b4dcab32613cf4f, type: 3}
-  MatchChip: {fileID: 8300000, guid: ee13b58e416a14369a1dc10dfce99f79, type: 3}
-  SwapChip: {fileID: 8300000, guid: ab1f42e47edc84bff96eda004a349b4b, type: 3}
-  AppearChip: {fileID: 8300000, guid: 63f67357f7bf54674b8034ab78366f74, type: 3}
-  WinGame: {fileID: 8300000, guid: aaeea69a62b59480c83dba32f05fb11c, type: 3}
 --- !u!1 &1462548531114918729
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +747,6 @@ MonoBehaviour:
   Registrations:
   - {fileID: 1462548529903509883}
   - {fileID: 1462548529622962983}
-  - {fileID: 0}
 --- !u!1 &6628663032929487664
 GameObject:
   m_ObjectHideFlags: 0
