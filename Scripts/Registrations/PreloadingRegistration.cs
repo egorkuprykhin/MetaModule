@@ -5,7 +5,7 @@ namespace Registrations
 {
     public class PreloadingRegistration : RegistrationBase
     {
-        protected override void RegisterServices(IRegistrar registrar)
+        protected override void RegisterServices(IServicesRegistrar registrar)
         {
             registrar.Register<SaveLoadService>();
             registrar.Register<OptionsDataService>();

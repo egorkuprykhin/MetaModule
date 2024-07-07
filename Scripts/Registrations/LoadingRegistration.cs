@@ -5,7 +5,7 @@ namespace Registrations
 {
     public class LoadingRegistration : RegistrationBase
     {
-        protected override void RegisterServices(IRegistrar registrar)
+        protected override void RegisterServices(IServicesRegistrar registrar)
         {
             registrar.Register<ScreensService>();
             registrar.Register<ScoresService>();

@@ -7,7 +7,7 @@ namespace Infrastructure.Core
     {
         [SerializeField] private List<RegistrationBase> Registrations;
         
-        public void BindRegistrations(IRegistrar registrar)
+        public void BindRegistrations(IRegistrationRegistrar registrar)
         {
             Registrations.ForEach(registrar.Register);
         }

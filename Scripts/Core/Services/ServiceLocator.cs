@@ -1,18 +1,22 @@
 using System;
+using Infrastructure.Common;
 using Infrastructure.Core;
 using Infrastructure.Services.Internal;
 using Services.Core;
 
 namespace Infrastructure.Services
 {
-    public class ServiceLocator : ServiceLocatorBase, IRegistrar
+    public class ServiceLocator : ServiceLocatorBase, IInitializable, IServicesRegistrar, IRegistrationRegistrar
     {
+        public new void Initialize() => base.Initialize();
+        
+        public new void UpdateServices(float dt) => base.UpdateServices(dt);
+
+        public void Register(IRegistration registration) => registration.Register(this);
+
         public new static TService GetService<TService>()
             where TService : class, IService =>
             ServiceLocatorBase.GetService<TService>();
-
-        public void Register(IRegistration registration) => 
-            registration.Register(this);
 
         public new void Register<TService>() 
             where TService : class, IService, new() => 
@@ -30,11 +34,5 @@ namespace Infrastructure.Services
             where TInterface : IService 
             where TService : MonoService, TInterface =>
             base.Register<TInterface, TService>(instance);
-
-        public new void Initialize() => 
-            base.Initialize();
-
-        public new void UpdateServices(float dt) => 
-            base.UpdateServices(dt);
     }
 }

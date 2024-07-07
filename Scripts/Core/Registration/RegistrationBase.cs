@@ -9,15 +9,15 @@ namespace Infrastructure.Core
         [SerializeField] private List<MonoService> MonoServices;
         [SerializeField] private List<MonoService> MonoInterfaceServices;
 
-        public void Register(IRegistrar registrar)
+        public void Register(IServicesRegistrar registrar)
         {
             RegisterSerializedServices(registrar);
             RegisterServices(registrar);
         }
 
-        protected abstract void RegisterServices(IRegistrar registrar);
+        protected abstract void RegisterServices(IServicesRegistrar registrar);
 
-        private void RegisterSerializedServices(IRegistrar registrar) =>
+        private void RegisterSerializedServices(IServicesRegistrar registrar) =>
             MonoServices.ForEach(service => registrar.Register(service.GetType(), service));
     }
 }
