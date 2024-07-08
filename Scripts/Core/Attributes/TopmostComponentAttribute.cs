@@ -21,42 +21,47 @@ namespace Infrastructure.Attributes.Internal
 
     public static class TopmostComponentHandler
     {
+        public static void CorrectComponentOrder(Component component)
+        {
+            OnComponentAdded(component);
+        }
+        
         [InitializeOnLoadMethod]
         private static void HandleAddComponent()
         {
             ObjectFactory.componentWasAdded -= OnComponentAdded;
             ObjectFactory.componentWasAdded += OnComponentAdded;
-
-            void OnComponentAdded(Component addedComponent)
-            {
-                List<Component> topMostComponents = addedComponent.gameObject.GetComponents<Component>()
-                    .ToList()
-                    .Where(HasTopmostAttribute)
-                    .OrderBy(GetOrder)
-                    .ToList();
+        }
+        
+        private static void OnComponentAdded(Component addedComponent)
+        {
+            List<Component> topMostComponents = addedComponent.gameObject.GetComponents<Component>()
+                .ToList()
+                .Where(HasTopmostAttribute)
+                .OrderBy(GetOrder)
+                .ToList();
                 
-                foreach (Component component in topMostComponents)
+            foreach (Component component in topMostComponents)
+            {
+                while (UnityEditorInternal.ComponentUtility.MoveComponentUp(component))
                 {
-                    while (UnityEditorInternal.ComponentUtility.MoveComponentUp(component))
-                    {
-                    }
-
-                    int order = GetActualOrder(topMostComponents, component);
-
-                    for (int i = 0; i < order; i++)
-                        UnityEditorInternal.ComponentUtility.MoveComponentDown(component);
                 }
 
-                bool HasTopmostAttribute(Component component) =>
-                    component.GetType().IsDefined(typeof(TopmostComponentAttribute), true);
+                int order = GetActualOrder(topMostComponents, component);
 
-                int GetOrder(Component component) => ((TopmostComponentAttribute)component.GetType()
-                    .GetCustomAttribute(typeof(TopmostComponentAttribute))).Order;
-
-                int GetActualOrder(List<Component> topmostComponents, Component myComponent) =>
-                    topmostComponents
-                        .Count(component => GetOrder(component) < GetOrder(myComponent));
+                for (int i = 0; i < order; i++)
+                    UnityEditorInternal.ComponentUtility.MoveComponentDown(component);
             }
+
+            bool HasTopmostAttribute(Component component) =>
+                component.GetType().IsDefined(typeof(TopmostComponentAttribute), true);
+
+            int GetOrder(Component component) => ((TopmostComponentAttribute)component.GetType()
+                .GetCustomAttribute(typeof(TopmostComponentAttribute))).Order;
+
+            int GetActualOrder(List<Component> topmostComponents, Component myComponent) =>
+                topmostComponents
+                    .Count(component => GetOrder(component) < GetOrder(myComponent));
         }
     }
 }

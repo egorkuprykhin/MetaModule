@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Infrastructure.Attributes.Internal;
 using Infrastructure.Screens;
 using UnityEditor;
 using UnityEngine;
@@ -52,6 +53,9 @@ namespace Editor
                     var type = _screens[screenName];
                     if (!child.gameObject.GetComponent(type))
                         child.gameObject.AddComponent(type);
+                    
+                    var component = child.gameObject.GetComponent(type);
+                    TopmostComponentHandler.CorrectComponentOrder(component);
                 }
             }
         }
