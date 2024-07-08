@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infrastructure.ButtonActions
 {
-    [TopmostComponent(Order = 0)]
+    [TopmostComponent(Order = 1)]
     public class PauseGameButtonAction : ButtonAction
     {
         [SerializeField] private bool Pause;

@@ -4,7 +4,7 @@ using Infrastructure.Services;
 
 namespace Infrastructure.ButtonActions
 {
-    [TopmostComponent(Order = 0)]
+    [TopmostComponent(Order = 1)]
     public class RestartCurrentLevelButtonAction : ButtonAction
     {
         private CoreStarterService _coreStarterService;

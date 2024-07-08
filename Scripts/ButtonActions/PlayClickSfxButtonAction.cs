@@ -4,7 +4,7 @@ using Infrastructure.Settings;
 
 namespace Infrastructure.ButtonActions
 {
-    [TopmostComponent(Order = 3)]
+    [TopmostComponent(Order = 4)]
     public class PlayClickSfxButtonAction : ButtonAction
     {
         private SfxService _sfxService;

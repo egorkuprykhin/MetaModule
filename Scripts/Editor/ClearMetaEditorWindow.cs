@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 
 namespace Editor
 {
-    public class RegenerateMetaTool : EditorWindow
+    public class ClearMetaEditorWindow : EditorWindow
     {
         private Object _dotween;
         private Object _unitask;
@@ -17,10 +17,10 @@ namespace Editor
         private Object _scriptsMeta;
         private Object _scriptsCore;
 
-        [MenuItem("Tools/MetaTools")]
+        [MenuItem("Tools/Regenerate Meta Window")]
         public new static void Show()
         {
-            EditorWindow window = GetWindow<RegenerateMetaTool>("Meta tool");
+            EditorWindow window = GetWindow<ClearMetaEditorWindow>("Regenerate Meta Window");
             window.Show();
         }
 
@@ -64,7 +64,7 @@ namespace Editor
 
                 var lines = new List<string>();
                 
-                using (var input =new StreamReader(file))
+                using (var input = new StreamReader(file))
                 {
                     while (input.ReadLine() is { } line)
                     {
@@ -110,20 +110,6 @@ namespace Editor
             var generated = sb.ToString();
                                 
             return generated;
-        }
-
-        [MenuItem("Tools/Regenerate meta")]
-        public static void RegenerateMetaWindow()
-        {
-            var allAssetPaths = AssetDatabase.GetAllAssetPaths();
-            foreach (var path in allAssetPaths)
-            {
-                var metaPath = path + ".meta";
-                if (AssetDatabase.LoadAssetAtPath<Object>(metaPath))
-                    AssetDatabase.DeleteAsset(metaPath);
-            }
-
-            // AssetDatabase.Refresh();
         }
     }
 }

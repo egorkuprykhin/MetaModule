@@ -3,7 +3,7 @@ using Infrastructure.Services;
 
 namespace Infrastructure.ButtonActions
 {
-    [TopmostComponent(Order = 1)]
+    [TopmostComponent(Order = 2)]
     public class OpenPreviousScreenButtonAction : ButtonAction
     {
         private ScreensService _screensService;

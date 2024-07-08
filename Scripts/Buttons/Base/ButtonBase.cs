@@ -1,11 +1,12 @@
+using Infrastructure.Attributes;
 using Infrastructure.ButtonActions;
 using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
+    [TopmostComponent(Order = 0)]
     [RequireComponent(typeof(PlayClickSfxButtonAction))]
-    [RequireComponent(typeof(OpenScreenButtonAction))]
-    public class ResultBackButton : MonoBehaviour
+    public class ButtonBase : MonoBehaviour
     {
     }
 }

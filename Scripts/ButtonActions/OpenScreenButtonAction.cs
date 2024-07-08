@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Infrastructure.ButtonActions
 {
-    [TopmostComponent(Order = 1)]
+    [TopmostComponent(Order = 2)]
     public class OpenScreenButtonAction : ButtonAction
     {
         [SerializeField] private ScreenBase Screen;

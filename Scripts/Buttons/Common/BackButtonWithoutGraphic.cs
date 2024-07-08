@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
+    [RequireComponent(typeof(OpenPreviousScreenButtonAction))]
     [RequireComponent(typeof(PauseGameButtonAction))]
-    [RequireComponent(typeof(PlayClickSfxButtonAction))]
-    [RequireComponent(typeof(OpenScreenButtonAction))]
-    public class GameOpenScreenButton : MonoBehaviour
+    public class BackButtonWithoutGraphic : ButtonBaseWithoutGraphic
     {
     }
 }

@@ -5,7 +5,7 @@ namespace Editor
 {
     public static class ClearPrefsTool
     {
-        [MenuItem("Tools/Clear saves")]
+        [MenuItem("Tools/Clear Saves")]
         public static void ClearPrefs()
         {
             PlayerPrefs.DeleteAll();
