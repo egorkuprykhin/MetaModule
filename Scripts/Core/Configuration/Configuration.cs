@@ -7,6 +7,6 @@ namespace Infrastructure.Common
     [CreateAssetMenu(order = 0)]
     public class Configuration : ScriptableObject
     {
-        [SerializeField] public List<SettingsModule> Modules;
+        [SerializeField] public List<SettingsBase> Settings;
     }
 }

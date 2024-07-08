@@ -1,5 +1,7 @@
 using Core.Game;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Screens;
+using Match3Game.Services;
 
 namespace Infrastructure.Services
 {
@@ -9,6 +11,7 @@ namespace Infrastructure.Services
         private GameResultService _gameResultService;
         private PlayerDataService _playerDataService;
         private IGameService _gameService;
+        private ITargetsService _targetsService;
 
         private ResultScreen _resultScreen;
         private GameScreen _gameScreen;
@@ -19,9 +22,30 @@ namespace Infrastructure.Services
             _gameResultService = ServiceLocator.GetService<GameResultService>();
             _playerDataService = ServiceLocator.GetService<PlayerDataService>();
             _gameService = ServiceLocator.GetService<IGameService>();
+            _targetsService = ServiceLocator.GetService<ITargetsService>();
             
             _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
+
+            SubscribeOnTargetsCollection();
+        }
+
+        private void SubscribeOnTargetsCollection()
+        {
+            if (_targetsService != null)
+                _targetsService.TargetsCollected += AllTargetsCollected;
+        }
+        
+        private void AllTargetsCollected()
+        {
+            _gameLifecycleService.SetPause(true);
+            FinishGameByTargets().Forget();
+        }
+        
+        private async UniTaskVoid FinishGameByTargets()
+        {
+            await UniTask.WaitForSeconds(_targetsService.DelayBeforeWin);
+            FinishGame();
         }
 
         public void FinishGame()

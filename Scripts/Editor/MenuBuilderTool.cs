@@ -61,23 +61,8 @@ namespace Editor
         }
 
         private static RectTransform FindMenuRoot(Scene scene) =>
-            FindOnScene<Canvas>(scene)
+            scene
+                .Find<Canvas>()
                 .GetComponent<RectTransform>();
-
-        private static T FindOnScene<T>(Scene scene)
-        {
-            foreach (var rootGameObject in scene.GetRootGameObjects())
-                if (rootGameObject.TryGetComponent(out T component))
-                    return component;
-            
-            foreach (var rootGameObject in scene.GetRootGameObjects())
-            {
-                var component = rootGameObject.GetComponentInChildren<T>();
-                if (component != null)
-                    return component;
-            }
-
-            return default;
-        }
     }
 }

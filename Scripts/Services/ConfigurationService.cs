@@ -1,4 +1,3 @@
-using System.Linq;
 using Infrastructure.Common;
 using Infrastructure.Core;
 using Services.Core;
@@ -19,18 +18,13 @@ namespace Infrastructure.Services
 
         public void Initialize()
         {
-            Configuration.Modules.ForEach(CacheModuleSettings);
+            Configuration.Settings.ForEach(CacheSettings);
         }
 
-        private void CacheModuleSettings(SettingsModule settingsModule)
+        private void CacheSettings(SettingsBase settings)
         {
-            if (settingsModule)
-            {
-                settingsModule.Settings
-                    .Where(settings => settings)
-                    .ToList()
-                    .ForEach(settings => _settingsCache.Register(settings.GetType(), settings));
-            }
+            if (settings) 
+                _settingsCache.Register(settings.GetType(), settings);
         }
     }
 }

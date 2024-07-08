@@ -10,6 +10,7 @@ namespace Infrastructure.Screens
         [SerializeField] private CurrentLevelView LevelView;
         [SerializeField] private ScoresView ScoresView;
         [SerializeField] private TimerView TimerView;
+        [SerializeField] private TargetsView TargetsView;
 
         private ScoresService _scoresService;
 
@@ -47,6 +48,8 @@ namespace Infrastructure.Screens
                 LevelView.Initialize();
             if (TimerView)
                 TimerView.Initialize();
+            if (TargetsView)
+                TargetsView.Initialize();
         }
 
         private void ShowViews()
@@ -57,6 +60,8 @@ namespace Infrastructure.Screens
                 ScoresView.Show();
             if (TimerView)
                 TimerView.Show();
+            if (TargetsView)
+                TargetsView.Show();
         }
 
         private void UpdateScores()

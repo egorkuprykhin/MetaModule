@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Infrastructure.Common;
 using Infrastructure.Screens.Internal;
+using UnityEditor;
 using UnityEngine;
 
 namespace Infrastructure.Screens
@@ -16,5 +17,15 @@ namespace Infrastructure.Screens
         public void Register() => Screens.ForEach(Register);
 
         public new void Initialize() => base.Initialize();
+        
+#if UNITY_EDITOR
+        public void CollectScreens()
+        {
+            var screens = Resources.FindObjectsOfTypeAll<ScreenBase>();
+            Screens = new List<ScreenBase>(screens);
+            
+            EditorUtility.SetDirty(this);
+        }
+#endif
     }
 }

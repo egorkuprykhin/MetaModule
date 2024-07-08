@@ -1,3 +1,4 @@
+using Core.Game;
 using Infrastructure.Attributes;
 using Infrastructure.Services;
 
@@ -7,15 +8,18 @@ namespace Infrastructure.ButtonActions
     public class StopGameButtonAction : ButtonAction
     {
         private GameLifecycleService _gameLifecycleService;
+        private IGameService _gameService;
 
         public override void Action()
         {
             _gameLifecycleService.StopGame();
+            _gameService?.ClearField();
         }
 
         protected override void Initialize()
         {
             _gameLifecycleService = ServiceLocator.GetService<GameLifecycleService>();
+            _gameService = ServiceLocator.GetService<IGameService>();
         }
     }
 }
