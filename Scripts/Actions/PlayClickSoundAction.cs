@@ -5,7 +5,7 @@ using Infrastructure.Settings;
 namespace Infrastructure.ButtonActions
 {
     [TopmostComponent(Order = 4)]
-    public class PlayClickSfxButtonAction : ButtonAction
+    public class PlayClickSoundAction : ButtonAction
     {
         private SfxService _sfxService;
         private SfxSettings _sfxSettings;

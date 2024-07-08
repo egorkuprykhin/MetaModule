@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
-    [RequireComponent(typeof(StartGameButtonAction))]
+    [RequireComponent(typeof(StartGameAction))]
     public class MenuPlayButton : ButtonBaseWithoutGraphic
     {
     }

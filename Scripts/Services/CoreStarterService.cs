@@ -1,6 +1,6 @@
 using Core.Game;
-using Core.Services;
 using Infrastructure.Screens;
+using Match3Game.Services;
 
 namespace Infrastructure.Services
 {
@@ -12,6 +12,7 @@ namespace Infrastructure.Services
         private ScoresService _scoresService;
         private PlayerDataService _playerDataService;
         private IGameService _gameStarterService;
+        private ITargetsService _targetsService;
         
         private GameScreen _gameScreen;
 
@@ -23,6 +24,7 @@ namespace Infrastructure.Services
             _scoresService = ServiceLocator.GetService<ScoresService>();
             _playerDataService = ServiceLocator.GetService<PlayerDataService>();
             _gameStarterService = ServiceLocator.GetService<IGameService>();
+            _targetsService = ServiceLocator.GetService<ITargetsService>();
             
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
         }
@@ -47,6 +49,7 @@ namespace Infrastructure.Services
             _playerDataService.InitSeed();
             _timerService.StartTimer();
             _gameLifecycleService.StartGame();
+            _targetsService?.CreateTargets();
         }
 
         private void ShowGameScreen()

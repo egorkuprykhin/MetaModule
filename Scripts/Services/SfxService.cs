@@ -1,4 +1,5 @@
 using Core.Sfx;
+using Infrastructure.Settings;
 using Services.Core;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Infrastructure.Services
         [SerializeField] private AudioSource MusicAudioSource;
         
         private OptionsDataService _optionsDataService;
+        private ConfigurationService _configurationService;
+        private SfxSettings _soundSettings;
 
         public bool SfxEnabled => _optionsDataService.OptionsData.SfxVolume > 0;
         public bool MusicEnabled => _optionsDataService.OptionsData.MusicVolume > 0;
@@ -19,17 +22,24 @@ namespace Infrastructure.Services
         public void Initialize()
         {
             _optionsDataService = ServiceLocator.GetService<OptionsDataService>();
+            _configurationService = ServiceLocator.GetService<ConfigurationService>();
+            _soundSettings = _configurationService.GetSettings<SfxSettings>();
+            
             UpdateVolume();
         }
 
         public void PlayBackgroundMusic()
         {
-            MusicAudioSource.Play();
+            if (_soundSettings.BackMusic && _soundSettings.BackMusic.AudioClip);
+            {
+                MusicAudioSource.clip = _soundSettings.BackMusic.AudioClip;
+                MusicAudioSource.Play();
+            }
         }
 
         public void PlaySfx(SfxType sfxType)
         {
-            if (sfxType.AudioClip)
+            if (sfxType && sfxType.AudioClip)
                 SfxSoundAudioSource.PlayOneShot(sfxType.AudioClip);
         }
 

@@ -4,7 +4,7 @@ using Infrastructure.Services;
 namespace Infrastructure.ButtonActions
 {
     [TopmostComponent(Order = 1)]
-    public class ExitGameButtonAction : ButtonAction
+    public class ExitGameAction : ButtonAction
     {
         private ExitGameService _exitGameService;
 

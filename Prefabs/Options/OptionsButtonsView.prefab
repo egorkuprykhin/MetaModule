@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1933952671709450651}
-  - component: {fileID: 7515758148022669948}
   - component: {fileID: 784772518419312316}
   - component: {fileID: 1666664871026720308}
   - component: {fileID: 573820143783705325}
@@ -39,18 +38,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 136, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7515758148022669948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2545185529396801835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebe1a10ca2f4ee897fe31da460bbd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &784772518419312316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +193,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3749337941735809492}
-  - component: {fileID: 1152297087142410488}
   - component: {fileID: 918183463181032124}
   - component: {fileID: 6365759583222516631}
   - component: {fileID: 7426818293285974855}
@@ -236,18 +222,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 136, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1152297087142410488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5318994772691400225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebe1a10ca2f4ee897fe31da460bbd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &918183463181032124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +313,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4006657376087144664}
-  - component: {fileID: 7216986057298307799}
   - component: {fileID: 1531885844416592327}
   - component: {fileID: 8290578316577710441}
   - component: {fileID: 3584310606927067184}
@@ -369,18 +342,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 136, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7216986057298307799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7158507203768948560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebe1a10ca2f4ee897fe31da460bbd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1531885844416592327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +433,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5641825460963654259}
-  - component: {fileID: 1147083590603066601}
   - component: {fileID: 2997814760226126406}
   m_Layer: 5
   m_Name: OptionsButtonsView
@@ -502,22 +462,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 412}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1147083590603066601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8026155293430245687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5fe8387f9344396a26fb098fd28f305, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicOnButton: {fileID: 8290578316577710441}
-  MusicOffButton: {fileID: 6365759583222516631}
-  SfxOnButton: {fileID: 1666664871026720308}
-  SfxOffButton: {fileID: 2330556245985917482}
 --- !u!114 &2997814760226126406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +497,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051015218454645750}
-  - component: {fileID: 4941730658758113446}
   - component: {fileID: 3169925982124339984}
   - component: {fileID: 2330556245985917482}
   - component: {fileID: 1621696568006527068}
@@ -583,18 +526,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 136, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4941730658758113446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8480162487951599862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebe1a10ca2f4ee897fe31da460bbd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3169925982124339984
 MonoBehaviour:
   m_ObjectHideFlags: 0

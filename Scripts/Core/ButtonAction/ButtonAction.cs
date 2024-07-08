@@ -5,13 +5,13 @@ using UnityEngine.UI;
 namespace Infrastructure.ButtonActions
 {
     [RequireComponent(typeof(Button))]
-    [RequireComponent(typeof(ButtonActionComposer))]
+    [RequireComponent(typeof(ActionsComposer))]
     [TopmostComponent(Order = 0)]
     public abstract class ButtonAction : MonoBehaviour
     {
         [SerializeField] public int Order;
         
-        private ButtonActionComposer _composer;
+        private ActionsComposer _composer;
 
         public abstract void Action();
 
@@ -25,7 +25,7 @@ namespace Infrastructure.ButtonActions
 
         private void RegisterInComposer()
         {
-            _composer = GetComponent<ButtonActionComposer>();
+            _composer = GetComponent<ActionsComposer>();
             _composer.Register(this);
         }
     }

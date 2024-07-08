@@ -4,7 +4,7 @@ using Infrastructure.Services;
 namespace Infrastructure.ButtonActions
 {
     [TopmostComponent(Order = 1)]
-    public class StartNextLevelButtonAction : ButtonAction
+    public class StartNextLevelAction : ButtonAction
     {
         private LevelsService _levelsService;
         private CoreStarterService _coreStarterService;

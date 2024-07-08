@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
-    [RequireComponent(typeof(RestartCurrentLevelButtonAction))]
+    [RequireComponent(typeof(RestartCurrentLevelAction))]
     public class RestartLevelButton : ButtonBaseWithoutGraphic
     {
     }

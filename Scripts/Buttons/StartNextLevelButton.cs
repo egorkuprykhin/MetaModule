@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
-    [RequireComponent(typeof(StartNextLevelButtonAction))]
+    [RequireComponent(typeof(StartNextLevelAction))]
     public class StartNextLevelButton : ButtonBaseWithoutGraphic
     {
     }

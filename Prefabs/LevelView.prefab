@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1918581370958127733}
-  - component: {fileID: 3075886013169805494}
-  - component: {fileID: 3498410094033807450}
-  - component: {fileID: 1918581370958127626}
   - component: {fileID: 7341625250742511746}
   m_Layer: 0
   m_Name: LevelView
@@ -50,53 +47,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3075886013169805494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918581370958127732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ebe1a10ca2f4ee897fe31da460bbd36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Order: 0
---- !u!114 &3498410094033807450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918581370958127732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 132b291b1ed545ffb5f898ba7ef4717d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1918581370958127626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1918581370958127732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9197d559c434d5c8f3336ec1da4f50b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LevelNumber: {fileID: 1918581371024450785}
-  LevelButton: {fileID: 7341625250742511746}
-  Locked: {fileID: 6445321937756779864}
-  ProgressStars:
-  - Star: {fileID: 1918581372790836746}
-    Back: {fileID: 1918581371374064915}
-  - Star: {fileID: 1918581371756298824}
-    Back: {fileID: 1918581371552699458}
-  - Star: {fileID: 1918581371358568482}
-    Back: {fileID: 1918581371573751664}
 --- !u!114 &7341625250742511746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,8 +173,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 283a58156647349c9af0d8c31728a809, type: 2}
-  m_sharedMaterial: {fileID: -2414872950017102316, guid: 283a58156647349c9af0d8c31728a809, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

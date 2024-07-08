@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
-    [RequireComponent(typeof(OpenPreviousScreenButtonAction))]
-    [RequireComponent(typeof(PauseGameButtonAction))]
+    [RequireComponent(typeof(OpenPreviousScreenAction))]
+    [RequireComponent(typeof(PauseGameAction))]
     public class BackButton : ButtonBase
     {
     }

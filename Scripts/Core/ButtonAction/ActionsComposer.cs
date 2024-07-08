@@ -8,7 +8,7 @@ namespace Infrastructure.ButtonActions
 {
     [RequireComponent(typeof(Button))]
     [TopmostComponent(Order = 100)]
-    public class ButtonActionComposer : MonoBehaviour
+    public class ActionsComposer : MonoBehaviour
     {
         private List<ButtonAction> _buttonActions = new List<ButtonAction>();
         private Button _button;

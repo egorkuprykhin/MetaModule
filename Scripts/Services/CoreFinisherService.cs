@@ -2,10 +2,11 @@ using Core.Game;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Screens;
 using Match3Game.Services;
+using UnityEngine;
 
 namespace Infrastructure.Services
 {
-    public class CoreFinisherService : IInitializableService
+    public class CoreFinisherService : IInitializableService, IPostInitializableService, IUpdatableService
     {
         private GameLifecycleService _gameLifecycleService;
         private GameResultService _gameResultService;
@@ -26,22 +27,25 @@ namespace Infrastructure.Services
             
             _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
+        }
 
+        public void PostInitialize()
+        {
             SubscribeOnTargetsCollection();
         }
 
         private void SubscribeOnTargetsCollection()
         {
-            if (_targetsService != null)
+            if (_targetsService is { Enabled: true })
                 _targetsService.TargetsCollected += AllTargetsCollected;
         }
-        
+
         private void AllTargetsCollected()
         {
             _gameLifecycleService.SetPause(true);
             FinishGameByTargets().Forget();
         }
-        
+
         private async UniTaskVoid FinishGameByTargets()
         {
             await UniTask.WaitForSeconds(_targetsService.DelayBeforeWin);
@@ -59,6 +63,14 @@ namespace Infrastructure.Services
 
             _gameScreen.Hide();
             _resultScreen.Show();
+        }
+
+        public void UpdateService(float deltaTime)
+        {
+#if UNITY_EDITOR
+            if (Input.GetKeyUp(KeyCode.W)) 
+                FinishGame();
+#endif
         }
     }
 }

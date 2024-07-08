@@ -5,7 +5,7 @@ using Infrastructure.Services;
 namespace Infrastructure.ButtonActions
 {
     [TopmostComponent(Order = 1)]
-    public class StopGameButtonAction : ButtonAction
+    public class StopGameAction : ButtonAction
     {
         private GameLifecycleService _gameLifecycleService;
         private IGameService _gameService;

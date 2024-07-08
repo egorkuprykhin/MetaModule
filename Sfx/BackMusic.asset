@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e1f737f25c1dad450aa82af22f89996, type: 3}
-  m_Name: CommonGameSettings
+  m_Script: {fileID: 11500000, guid: d9c02e894f8f9d46fa9036eb7ce95eaf, type: 3}
+  m_Name: BackMusic
   m_EditorClassIdentifier: 
-  InitialLevelTime: 0
-  Time3Stars: 0
-  Time2Stars: 0
-  TimerFromZero: 1
-  LevelsCount: 0
-  WinText: 
-  LoseText: 
+  AudioClip: {fileID: 8300000, guid: 135c33892d79541fcab053fd386d1e58, type: 3}

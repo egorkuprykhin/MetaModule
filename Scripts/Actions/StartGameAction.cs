@@ -5,21 +5,23 @@ using Infrastructure.Services;
 namespace Infrastructure.ButtonActions
 {
     [TopmostComponent(Order = 1)]
-    public class RestartCurrentLevelButtonAction : ButtonAction
+    public class StartGameAction : ButtonAction
     {
         private CoreStarterService _coreStarterService;
-        private ResultScreen _resultScreen;
+        private MenuScreen _menuScreen;
 
         public override void Action()
         {
-            _resultScreen.Hide();
+            if (_menuScreen)
+                _menuScreen.Hide();
+            
             _coreStarterService.StartCore();
         }
 
         protected override void Initialize()
         {
             _coreStarterService = ServiceLocator.GetService<CoreStarterService>();
-            _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
+            _menuScreen = ScreenLocator.GetScreen<MenuScreen>();
         }
     }
 }

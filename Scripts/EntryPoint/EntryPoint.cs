@@ -21,9 +21,16 @@ namespace Infrastructure.Common
             ServiceLocator.Initialize();
             
             ScreensLocator.Initialize();
+            
+            ServiceLocator.PostInitialize();
         }
 
-        private async void Start()
+        private void Start()
+        {
+            StartAsync().Forget();
+        }
+
+        private async UniTaskVoid StartAsync()
         {
             await UniTask.NextFrame();
             

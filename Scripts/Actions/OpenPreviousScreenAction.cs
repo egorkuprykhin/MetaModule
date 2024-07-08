@@ -4,7 +4,7 @@ using Infrastructure.Services;
 namespace Infrastructure.ButtonActions
 {
     [TopmostComponent(Order = 2)]
-    public class OpenPreviousScreenButtonAction : ButtonAction
+    public class OpenPreviousScreenAction : ButtonAction
     {
         private ScreensService _screensService;
 

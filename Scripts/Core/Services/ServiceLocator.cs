@@ -10,6 +10,8 @@ namespace Infrastructure.Services
     {
         public new void Initialize() => base.Initialize();
         
+        public new void PostInitialize() => base.PostInitialize();
+        
         public new void UpdateServices(float dt) => base.UpdateServices(dt);
 
         public void Register(IRegistration registration) => registration.Register(this);

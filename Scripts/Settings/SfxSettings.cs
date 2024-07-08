@@ -7,8 +7,11 @@ namespace Infrastructure.Settings
     [CreateAssetMenu(fileName = "SfxSettings")]
     public class SfxSettings : SettingsBase
     {
-        public SfxType Click;
-        public SfxType WinGame;
-        public SfxType LoseGame;
+        [SerializeField] public SfxType BackMusic;
+        
+        [Space]
+        [SerializeField] public SfxType Click;
+        [SerializeField] public SfxType WinGame;
+        [SerializeField] public SfxType LoseGame;
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
-    [RequireComponent(typeof(OpenScreenButtonAction))]
-    [RequireComponent(typeof(PauseGameButtonAction))]
+    [RequireComponent(typeof(OpenScreenAction))]
+    [RequireComponent(typeof(PauseGameAction))]
     public class OpenScreenButton : ButtonBase
     {
     }

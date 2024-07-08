@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Core.MetaModule.Scripts.Buttons
 {
-    [RequireComponent(typeof(StopGameButtonAction))]
+    [RequireComponent(typeof(StopGameAction))]
     public class GameBackButton : OpenScreenButton
     {
     }
