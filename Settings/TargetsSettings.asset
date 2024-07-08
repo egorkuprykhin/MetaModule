@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UseTargets: 1
   TargetsTypesCount: 3
-  InitialTargetsCount: 3
-  DelayBeforeWin: 0.15
+  InitialTargetsCount: 9
+  DelayBeforeWin: 0.23
   TargetCollectedSound: {fileID: 11400000, guid: da9cca269111315df533140c394e4d1a, type: 2}
   ProgressiveTargetsCount: 0
