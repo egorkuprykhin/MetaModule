@@ -1,6 +1,5 @@
 using Core.Game;
 using Infrastructure.Screens;
-using Match3Game.Services;
 
 namespace Infrastructure.Services
 {
