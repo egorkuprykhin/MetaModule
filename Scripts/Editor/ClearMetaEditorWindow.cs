@@ -5,60 +5,25 @@ using System.Security.Cryptography;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Editor
 {
-    public class ClearMetaEditorWindow : EditorWindow
+    public static class ClearMetaEditorWindow
     {
-        private Object _dotween;
-        private Object _unitask;
-        private Object _uiparticle;
-        private Object _scriptsMeta;
-        private Object _scriptsCore;
+        private static List<string> SkipFolders = new List<string> { "Sprites", "Fonts", "Scenes" };
 
-        [MenuItem("Tools/Regenerate Meta Window")]
-        public new static void Show()
+        [MenuItem("Tools/Process Meta Files")]
+        private static void ProcessFolder()
         {
-            EditorWindow window = GetWindow<ClearMetaEditorWindow>("Regenerate Meta Window");
-            window.Show();
-        }
-
-        private void OnGUI()
-        {
-            _dotween = EditorGUILayout.ObjectField("Dotween", _dotween, typeof(Object), false);
-            _unitask = EditorGUILayout.ObjectField("Unitask", _unitask, typeof(Object), false);
-            _uiparticle = EditorGUILayout.ObjectField("Uiparticle", _uiparticle, typeof(Object), false);
-            _scriptsMeta = EditorGUILayout.ObjectField("Scripts meta", _scriptsMeta, typeof(Object), false);
-            _scriptsCore = EditorGUILayout.ObjectField("Scripts core", _scriptsCore, typeof(Object), false);
-
-            if (GUILayout.Button("Process")) 
-                Process();
-        }
-
-        private void Process()
-        {
-            ProcessFolder(_dotween);
-            ProcessFolder(_unitask);
-            ProcessFolder(_uiparticle);
-            ProcessFolder(_scriptsMeta);
-            ProcessFolder(_scriptsCore);
-            
-            Debug.Log("Done");
-        }
-
-        private void ProcessFolder(Object folder)
-        {
-            var path = AssetDatabase.GetAssetPath(folder);
-            if (!AssetDatabase.IsValidFolder(path))
-                return;
-            path = path.Replace("Assets/", "");
-
-            var fullPath = $"{Application.dataPath}/{path}";
+            var fullPath = $"{Application.dataPath}";
             
             var metaFiles = Directory.GetFiles(fullPath, "*.meta", SearchOption.AllDirectories);
             for (var index = 0; index < metaFiles.Length; index++)
             {
+                
+                if (NeedSkipFolder(metaFiles[index]))
+                    continue;
+                
                 var file = metaFiles[index];
                 string newGuid;
 
@@ -97,7 +62,18 @@ namespace Editor
             }
         }
 
-        private string GenerateMd5(string source)
+        private static bool NeedSkipFolder(string metaFile)
+        {
+            foreach (var folder in SkipFolders)
+            {
+                if (metaFile.Contains(folder))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static string GenerateMd5(string source)
         {
             using MD5 md5 = MD5.Create();
             byte[] inputBytes = Encoding.ASCII.GetBytes(source);
