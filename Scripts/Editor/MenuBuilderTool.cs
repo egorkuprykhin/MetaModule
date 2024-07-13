@@ -15,10 +15,11 @@ namespace Editor
         private const string Menu = "menu";
         private const string Policy = "policy";
         private const string Options = "options";
-        private const string Levels = "levels";
+        private const string Levels = "level";
         private const string Game = "game";
         private const string Result = "result";
         private const string Exit = "exit";
+        private const string Rules = "rules";
 
         private static Dictionary<string, Type> _screens = new Dictionary<string, Type>
         {
@@ -30,7 +31,8 @@ namespace Editor
             { Levels, typeof(LevelsScreen) },
             { Game, typeof(GameScreen) },
             { Result, typeof(ResultScreen) },
-            { Exit, typeof(ExitScreen) }
+            { Exit, typeof(ExitScreen) },
+            { Rules, typeof(RulesScreen) }
         };
 
 
