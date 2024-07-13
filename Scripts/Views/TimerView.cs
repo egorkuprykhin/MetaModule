@@ -30,6 +30,7 @@ namespace Infrastructure.ButtonActions
 
         public override void Show()
         {
+            UpdateView();
         }
 
         public void UpdateTimer()

@@ -13,7 +13,8 @@ namespace Infrastructure.Services
         private IGameService _gameService;
         private ITargetsService _targetsService;
 
-        private ResultScreen _resultScreen;
+        private WinScreen _winScreen;
+        private LoseScreen _loseScreen;
         private GameScreen _gameScreen;
 
         public void Initialize()
@@ -24,8 +25,9 @@ namespace Infrastructure.Services
             _gameService = ServiceLocator.GetService<IGameService>();
             _targetsService = ServiceLocator.GetService<ITargetsService>();
             
-            _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
             _gameScreen = ScreenLocator.GetScreen<GameScreen>();
+            _winScreen = ScreenLocator.GetScreen<WinScreen>();
+            _loseScreen = ScreenLocator.GetScreen<LoseScreen>();
         }
 
         public void PostInitialize()
@@ -61,7 +63,11 @@ namespace Infrastructure.Services
             _gameService?.ClearField();
 
             _gameScreen.Hide();
-            _resultScreen.Show();
+            
+            if (_gameResultService.GameResultData.IsWin())
+                _winScreen.Show();
+            else
+                _loseScreen.Show();
         }
 
         public void UpdateService(float deltaTime)

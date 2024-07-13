@@ -8,18 +8,22 @@ namespace Infrastructure.ButtonActions
     public class RestartCurrentLevelAction : ButtonAction
     {
         private CoreStarterService _coreStarterService;
-        private ResultScreen _resultScreen;
+        private WinScreen _winScreen;
+        private LoseScreen _loseScreen;
+        
 
         public override void Action()
         {
-            _resultScreen.Hide();
+            _winScreen.Hide();
+            _loseScreen.Hide();
             _coreStarterService.StartCore();
         }
 
         protected override void Initialize()
         {
             _coreStarterService = ServiceLocator.GetService<CoreStarterService>();
-            _resultScreen = ScreenLocator.GetScreen<ResultScreen>();
+            _winScreen = ScreenLocator.GetScreen<WinScreen>();
+            _loseScreen = ScreenLocator.GetScreen<LoseScreen>();
         }
     }
 }

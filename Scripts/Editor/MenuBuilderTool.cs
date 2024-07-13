@@ -17,7 +17,8 @@ namespace Editor
         private const string Options = "options";
         private const string Levels = "level";
         private const string Game = "game";
-        private const string Result = "result";
+        private const string Win = "win";
+        private const string Lose = "lose";
         private const string Exit = "exit";
         private const string Rules = "rules";
 
@@ -30,7 +31,8 @@ namespace Editor
             { Options, typeof(OptionsScreen) },
             { Levels, typeof(LevelsScreen) },
             { Game, typeof(GameScreen) },
-            { Result, typeof(ResultScreen) },
+            { Win, typeof(WinScreen) },
+            { Lose, typeof(LoseScreen) },
             { Exit, typeof(ExitScreen) },
             { Rules, typeof(RulesScreen) }
         };
