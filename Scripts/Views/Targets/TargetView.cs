@@ -1,4 +1,5 @@
 using Infrastructure.Core;
+using Infrastructure.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
