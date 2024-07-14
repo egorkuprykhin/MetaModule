@@ -8,7 +8,7 @@ namespace Infrastructure.ButtonActions
     [TopmostComponent(Order = 2)]
     public class OpenScreenAction : ButtonAction
     {
-        [SerializeField] private ScreenBase Screen;
+        [SerializeField] public ScreenBase Screen;
 
         private CurrentScreenService _currentScreenService;
 

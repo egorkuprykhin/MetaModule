@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Editor
 {
@@ -12,6 +14,15 @@ namespace Editor
             var component = gameObject.GetComponent<T>();
             if (!component)
                 component = gameObject.AddComponent<T>();
+
+            return component;
+        }
+        
+        public static Component GetOrAddComponent(this GameObject gameObject, Type type)
+        {
+            var component = gameObject.GetComponent(type);
+            if (!component)
+                component = gameObject.AddComponent(type);
 
             return component;
         }

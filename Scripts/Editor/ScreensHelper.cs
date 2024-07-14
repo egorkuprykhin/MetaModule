@@ -4,6 +4,7 @@ using Core.MetaModule.Scripts.Buttons;
 using Infrastructure.Common;
 using Infrastructure.Core;
 using Infrastructure.Screens;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace Editor
@@ -44,7 +45,22 @@ namespace Editor
         
         private static readonly Dictionary<ButtonBindingType, Type> _bindingsToButtons = new Dictionary<ButtonBindingType, Type>()
         {
-            { ButtonBindingType.OpenScreen, typeof(OpenScreenButton)}
+            { ButtonBindingType.OpenScreen, typeof(OpenScreenButton)},
+            { ButtonBindingType.Back, typeof(BackButton)},
+            { ButtonBindingType.ExitGame, typeof(ExitGameButton)},
+            { ButtonBindingType.StartGame, typeof(StartGameButton)},
+            { ButtonBindingType.StopGame, typeof(StopGameButton)},
+            { ButtonBindingType.StartAfterResult, typeof(StartGameAfterResultButton)}
+        };
+        
+        private static readonly Dictionary<ButtonBindingType, Type> _bindingsToButtonsEmptyGraphic = new Dictionary<ButtonBindingType, Type>()
+        {
+            { ButtonBindingType.OpenScreen, typeof(OpenScreenButtonEmptyGraphic)},
+            { ButtonBindingType.Back, typeof(BackButtonEmptyGraphic)},
+            { ButtonBindingType.ExitGame, typeof(ExitGameButtonEmptyGraphic)},
+            { ButtonBindingType.StartGame, typeof(StartGameButtonEmptyGraphic)},
+            { ButtonBindingType.StopGame, typeof(StopGameButtonEmptyGraphic)},
+            { ButtonBindingType.StartAfterResult, typeof(StartGameAfterResultButtonEmptyGraphic)}
         };
 
         public static Dictionary<string, Type> GetScreens() => _screens;
@@ -85,6 +101,17 @@ namespace Editor
         {
             if (_screens.TryGetValue(name, out var screenType))
                 return (ScreenBase)Object.FindObjectOfType(screenType, true);
+
+            return null;
+        }
+        
+        public static Type GetButtonTypeByBinding(ButtonBindingEntry binding)
+        {
+            var hasGraphic = (bool)binding.Button.GetComponent<Graphic>();
+            var source = hasGraphic ? _bindingsToButtons : _bindingsToButtonsEmptyGraphic;
+            
+            if (source.TryGetValue(binding.BindingType, out var buttonType))
+                return buttonType;
 
             return null;
         }
