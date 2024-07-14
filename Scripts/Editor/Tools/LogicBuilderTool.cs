@@ -1,0 +1,107 @@
+using Coffee.UIEffects;
+using Game.Services;
+using Infrastructure.Common;
+using Infrastructure.Core;
+using Infrastructure.Screens;
+using Infrastructure.Services;
+using Registrations;
+using UnityEditor;
+using UnityEngine;
+
+namespace Editor
+{
+    public static class LogicBuilderTool
+    {
+        [MenuItem(Constants.Tools.BuildMetaLogic)]
+        public static void Build()
+        {
+            var logicGo = new GameObject("Logic");
+
+            var entryPointGo = new GameObject("EntryPoint");
+            entryPointGo.transform.SetParent(logicGo.transform);
+            
+            var registrationsBinderGo = new GameObject("RegistrationsBinder");
+            registrationsBinderGo.transform.SetParent(logicGo.transform);
+            
+            var preloadingRegistrationGo = new GameObject("PreloadingRegistration");
+            preloadingRegistrationGo.transform.SetParent(logicGo.transform);
+            
+            var loadingRegistrationGo = new GameObject("LoadingRegistration");
+            loadingRegistrationGo.transform.SetParent(logicGo.transform);
+            
+            var serviceLocatorGo = new GameObject("ServiceLocator");
+            serviceLocatorGo.transform.SetParent(logicGo.transform);
+            
+            var screensLocatorGo = new GameObject("ScreensLocator");
+            screensLocatorGo.transform.SetParent(logicGo.transform);
+            
+            var configurationServiceGo = new GameObject("ConfigurationService");
+            configurationServiceGo.transform.SetParent(preloadingRegistrationGo.transform);
+            
+            var blurServiceGo = new GameObject("BlurService");
+            blurServiceGo.transform.SetParent(preloadingRegistrationGo.transform);
+            
+            var soundServiceGo = new GameObject("SoundService");
+            soundServiceGo.transform.SetParent(loadingRegistrationGo.transform);
+            
+            var soundAudioSourceGo = new GameObject("SoundAudioSource");
+            soundAudioSourceGo.transform.SetParent(soundServiceGo.transform);
+            
+            var musicAudioSourceGo = new GameObject("MusicAudioSource");
+            musicAudioSourceGo.transform.SetParent(soundServiceGo.transform);
+            
+            var vibrationServiceGo = new GameObject("VibrationService");
+            vibrationServiceGo.transform.SetParent(loadingRegistrationGo.transform);
+            
+            var postLoadingServiceGo = new GameObject("PostLoadingService");
+            postLoadingServiceGo.transform.SetParent(loadingRegistrationGo.transform);
+            
+            
+            var entryPoint = entryPointGo.GetOrAddComponent<EntryPoint>();
+            var registrationsBinder = registrationsBinderGo.GetOrAddComponent<RegistrationsBinder>();
+            var preloadingRegistration = preloadingRegistrationGo.GetOrAddComponent<PreloadingRegistration>();
+            var loadingRegistration = loadingRegistrationGo.GetOrAddComponent<LoadingRegistration>();
+            var serviceLocator = serviceLocatorGo.GetOrAddComponent<ServiceLocator>();
+            var screensLocator = screensLocatorGo.GetOrAddComponent<ScreenLocator>();
+            
+            var configurationService = configurationServiceGo.GetOrAddComponent<ConfigurationService>();
+            var blurService = blurServiceGo.GetOrAddComponent<BlurService>();
+            var soundService = soundServiceGo.GetOrAddComponent<SoundService>();
+            var soundAudioSource = soundAudioSourceGo.GetOrAddComponent<AudioSource>();
+            var musicAudioSource = musicAudioSourceGo.GetOrAddComponent<AudioSource>();
+            var vibrationService = vibrationServiceGo.GetOrAddComponent<VibrationService>();
+            var postLoadingService = postLoadingServiceGo.GetOrAddComponent<PostLoadingService>();
+
+            entryPoint.ServiceLocator = serviceLocator;
+            entryPoint.ScreensLocator = screensLocator;
+            entryPoint.RegistrationsBinder = registrationsBinder;
+
+            registrationsBinder.CollectRegistrations();
+            preloadingRegistration.CollectMonoServices();
+            loadingRegistration.CollectMonoServices();
+            screensLocator.CollectScreens();
+
+            configurationService.Configuration =
+                EditorExtensions.GetSingleByName<Configuration>(Constants.Configuration.MetaConfiguration);
+            
+            UIEffect blurEffect = Object.FindObjectOfType<UIEffect>();
+            if (blurEffect)
+                blurService.BlurEffect = blurEffect;
+            
+            soundService.SoundAudioSource = soundAudioSource;
+            soundService.MusicAudioSource = musicAudioSource;
+
+            soundAudioSource.playOnAwake = false;
+            musicAudioSource.playOnAwake = false;
+            musicAudioSource.loop = true;
+
+            ScreenBase postLoadingScreen = Object.FindObjectOfType<StartScreen>();
+            if(!postLoadingScreen)
+                postLoadingScreen = Object.FindObjectOfType<MenuScreen>();
+
+            postLoadingService.NextScreen = postLoadingScreen;
+            
+            Logger.LogColored("Done", Color.green);
+        }
+    }
+}

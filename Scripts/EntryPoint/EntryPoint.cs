@@ -8,9 +8,9 @@ namespace Infrastructure.Common
 {
     public class EntryPoint : MonoBehaviour
     {
-        [SerializeField] private RegistrationsBinder RegistrationsBinder;
-        [SerializeField] private ServiceLocator ServiceLocator; 
-        [SerializeField] private ScreenLocator ScreensLocator;
+        [SerializeField] public RegistrationsBinder RegistrationsBinder;
+        [SerializeField] public ServiceLocator ServiceLocator; 
+        [SerializeField] public ScreenLocator ScreensLocator;
 
         private void Awake()
         {

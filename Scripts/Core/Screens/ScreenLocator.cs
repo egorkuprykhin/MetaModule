@@ -8,7 +8,7 @@ namespace Infrastructure.Screens
 {
     public class ScreenLocator : ScreenLocatorBase, IInitializable
     {
-        [SerializeField] private List<ScreenBase> Screens;
+        [SerializeField] public List<ScreenBase> Screens;
 
         public new static TScreen GetScreen<TScreen>()
             where TScreen : ScreenBase =>

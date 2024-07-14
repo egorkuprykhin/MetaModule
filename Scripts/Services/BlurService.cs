@@ -6,7 +6,7 @@ namespace Game.Services
 {
     public class BlurService : MonoService
     {
-        [SerializeField] private UIEffect BlurEffect;
+        [SerializeField] public UIEffect BlurEffect;
 
         public void EnableBlur()
         {

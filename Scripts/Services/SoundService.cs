@@ -6,8 +6,8 @@ namespace Infrastructure.Services
 {
     public class SoundService : MonoService, IInitializableService
     {
-        [SerializeField] private AudioSource SfxSoundAudioSource;
-        [SerializeField] private AudioSource MusicAudioSource;
+        [SerializeField] public AudioSource SoundAudioSource;
+        [SerializeField] public AudioSource MusicAudioSource;
         
         private OptionsDataService _optionsDataService;
         private ConfigurationService _configurationService;
@@ -39,7 +39,7 @@ namespace Infrastructure.Services
         public void PlaySound(AudioClip audioClip)
         {
             if (audioClip)
-                SfxSoundAudioSource.PlayOneShot(audioClip);
+                SoundAudioSource.PlayOneShot(audioClip);
         }
 
         public void SwitchMusicEnabled()
@@ -82,7 +82,7 @@ namespace Infrastructure.Services
 
         private void UpdateVolume()
         {
-            SfxSoundAudioSource.volume = SfxVolume;
+            SoundAudioSource.volume = SfxVolume;
             MusicAudioSource.volume = MusicVolume;
         }
 

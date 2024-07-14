@@ -22,7 +22,7 @@ namespace Editor
         [MenuItem(Constants.Tools.CollectMetaConfiguration)]
         public static void CollectMetaConfiguration()
         {
-            var configuration = EditorExtensions.GetSingleByName<Configuration>(Constants.Configurations.MetaConfiguration);
+            var configuration = EditorExtensions.GetSingleByName<Configuration>(Constants.Configuration.MetaConfiguration);
             if (configuration)
             {
                 var assetPath = AssetDatabase.GetAssetPath(configuration);

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using Infrastructure.Common;
 using UnityEditor;
 using UnityEngine;
 
 namespace Editor
 {
-    public static class ClearMetaTool
+    public static class ClearMetaFilesTool
     {
-        private static List<string> SkipFolders = new List<string> { "Sprites", "Fonts", "Scenes" };
+        private static List<string> SkipFolders = new List<string> { "Sprites", "Fonts" };
 
-        [MenuItem("Tools/Process Meta Files")]
+        [MenuItem(Constants.Tools.ClearMetaFiles)]
         private static void ProcessFolder()
         {
             var fullPath = $"{Application.dataPath}";

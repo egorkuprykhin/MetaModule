@@ -7,7 +7,7 @@ namespace Infrastructure.Services
 {
     public class PostLoadingService : MonoService, IInitializableService
     {
-        [SerializeField] private ScreenBase NextScreen;
+        [SerializeField] public ScreenBase NextScreen;
         
         private SoundService _soundService;
         private BlurService _blurService;

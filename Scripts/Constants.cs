@@ -5,11 +5,13 @@ namespace Infrastructure.Common
 #if UNITY_EDITOR
         public static partial class Tools
         {
+            public const string ClearMetaFiles = "Tools/Clear *.meta Files";
             public const string AssignMetaScripts = "Tools/Assign Meta Scripts To Configs";
             public const string CollectMetaConfiguration = "Tools/Collect Meta Configuration Settings";
+            public const string BuildMetaLogic = "Tools/Build Meta Logic";
         }
 
-        public static partial class Configurations
+        public static partial class Configuration
         {
             public const string MetaConfiguration = "_Configuration";
         }

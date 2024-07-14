@@ -28,7 +28,7 @@ namespace Editor
 
 
         [MenuItem("Tools/Build Menu Screens")]
-        public static void BuildMenu()
+        public static void BuildMenuScreens()
         {
             var scene = SceneManager.GetActiveScene();
             var menuRoot = FindMenuRoot(scene);

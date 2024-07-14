@@ -7,6 +7,15 @@ namespace Editor
 {
     public static class EditorExtensions
     {
+        public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
+        {
+            var component = gameObject.GetComponent<T>();
+            if (!component)
+                component = gameObject.AddComponent<T>();
+
+            return component;
+        }
+        
         public static T Find<T>(this Scene scene)
         {
             foreach (var rootGameObject in scene.GetRootGameObjects())
@@ -25,7 +34,8 @@ namespace Editor
         
         public static T GetSingle<T>() where T : Object
         {
-            var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
+            var filter = $"t:{typeof(T)}";
+            var guids = AssetDatabase.FindAssets(filter);
             var asset = AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(guids[0]));
             
             return asset;
