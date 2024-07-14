@@ -14,7 +14,7 @@ namespace Infrastructure.Core
 #if UNITY_EDITOR
         public void CollectRegistrations()
         {
-            var registrations = gameObject.GetComponentsInChildren<RegistrationBase>();
+            var registrations = Object.FindObjectsOfType<RegistrationBase>();
             Registrations = new List<RegistrationBase>(registrations);
         }
 #endif

@@ -20,14 +20,14 @@ namespace Editor
             var entryPointGo = new GameObject("EntryPoint");
             entryPointGo.transform.SetParent(logicGo.transform);
             
-            var registrationsBinderGo = new GameObject("RegistrationsBinder");
-            registrationsBinderGo.transform.SetParent(logicGo.transform);
+            var registrationsGo = new GameObject("Registrations");
+            registrationsGo.transform.SetParent(logicGo.transform);
             
             var preloadingRegistrationGo = new GameObject("PreloadingRegistration");
-            preloadingRegistrationGo.transform.SetParent(logicGo.transform);
+            preloadingRegistrationGo.transform.SetParent(registrationsGo.transform);
             
             var loadingRegistrationGo = new GameObject("LoadingRegistration");
-            loadingRegistrationGo.transform.SetParent(logicGo.transform);
+            loadingRegistrationGo.transform.SetParent(registrationsGo.transform);
             
             var serviceLocatorGo = new GameObject("ServiceLocator");
             serviceLocatorGo.transform.SetParent(logicGo.transform);
@@ -58,7 +58,7 @@ namespace Editor
             
             
             var entryPoint = entryPointGo.GetOrAddComponent<EntryPoint>();
-            var registrationsBinder = registrationsBinderGo.GetOrAddComponent<RegistrationsBinder>();
+            var registrationsBinder = registrationsGo.GetOrAddComponent<RegistrationsBinder>();
             var preloadingRegistration = preloadingRegistrationGo.GetOrAddComponent<PreloadingRegistration>();
             var loadingRegistration = loadingRegistrationGo.GetOrAddComponent<LoadingRegistration>();
             var serviceLocator = serviceLocatorGo.GetOrAddComponent<ServiceLocator>();

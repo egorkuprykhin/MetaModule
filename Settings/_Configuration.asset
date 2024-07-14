@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: _Configuration
   m_EditorClassIdentifier: 
   Settings:
-  - {fileID: 11400000, guid: b516727fe9e6e75ef40c9bc9550f3ffa, type: 2}
-  - {fileID: 11400000, guid: f5f2dc37153e0231c4ce00a9104c329a, type: 2}
-  - {fileID: 11400000, guid: c4b3b534acf842e368a2f799318b783e, type: 2}
-  - {fileID: 11400000, guid: 371743a36ee8860dbf5245ee8bcbb27a, type: 2}
-  - {fileID: 11400000, guid: b707ea43c6a0e401983b7d4eff2647ec, type: 2}
+  - {fileID: 11400000, guid: 27690553e7fe6a21229a3baea65c042d, type: 2}
+  - {fileID: 11400000, guid: 4013592c699f6af77ddabbbfc0c1bdd8, type: 2}
+  - {fileID: 11400000, guid: a460d4e2c992e193c83467ac0166ce3a, type: 2}
+  - {fileID: 11400000, guid: b6414e4f66871f979487196fb119af6a, type: 2}
+  - {fileID: 11400000, guid: 7d1b6a0ccada898d17abd655647d921c, type: 2}

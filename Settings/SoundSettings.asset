@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SoundSettings
   m_EditorClassIdentifier: 
   BackMusic: {fileID: 0}
-  Click: {fileID: 0}
+  Click: {fileID: 8300000, guid: bc1ffc03efd153018dc0fbc4de90809b, type: 3}
   WinGame: {fileID: 0}
   LoseGame: {fileID: 0}

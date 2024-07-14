@@ -7,7 +7,6 @@ namespace Infrastructure.Core
     public abstract class RegistrationBase : MonoBehaviour, IRegistration
     {
         [SerializeField] public List<MonoService> MonoServices;
-        // [SerializeField] private List<MonoService> MonoInterfaceServices;
 
         public void Register(IServicesRegistrar registrar)
         {
