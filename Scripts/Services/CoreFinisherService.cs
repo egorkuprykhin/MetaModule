@@ -24,6 +24,7 @@ namespace Infrastructure.Services
             _gameLifecycleService = ServiceLocator.GetService<GameLifecycleService>();
             _gameResultService = ServiceLocator.GetService<GameResultService>();
             _playerDataService = ServiceLocator.GetService<PlayerDataService>();
+            _levelsService = ServiceLocator.GetService<LevelsService>();
             _gameService = ServiceLocator.GetService<IGameService>();
             _targetsService = ServiceLocator.GetService<ITargetsService>();
             

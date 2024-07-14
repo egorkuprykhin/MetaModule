@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1de4d9896c3b253d2b336e02313bc9, type: 3}
   m_Name: CommonSettings
   m_EditorClassIdentifier: 
-  InitialLevelTime: 0
-  AlwaysThreeStars: 1
-  Time3Stars: 0
-  Time2Stars: 0
-  TimerFromZero: 1
-  LevelsCount: 0
-  WinText: 
-  LoseText: 
+  InitialLevelTime: 60
+  AlwaysThreeStars: 0
+  Time3Stars: 30
+  Time2Stars: 15
+  TimerFromZero: 0
+  LevelsCount: 15

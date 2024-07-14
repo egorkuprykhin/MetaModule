@@ -2,7 +2,7 @@ using Services.Core;
 
 namespace Infrastructure.Services
 {
-    public class VibrationService : MonoService, IInitializableService
+    public class VibrationService : MonoService, IInitializableService, IPostInitializableService
     {
         private OptionsDataService _optionsDataService;
 
@@ -11,12 +11,15 @@ namespace Infrastructure.Services
         public void Initialize()
         {
             _optionsDataService = ServiceLocator.GetService<OptionsDataService>();
-            
+        }
+
+        public void PostInitialize()
+        {
             SetEnabled(_optionsDataService.OptionsData.VibrationEnabled);
             
             // Vibration.Init();
         }
-        
+
         public void SetEnabled(bool isEnabled)
         {
             _optionsDataService.OptionsData.VibrationEnabled = isEnabled;

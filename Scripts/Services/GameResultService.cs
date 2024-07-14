@@ -35,6 +35,9 @@ namespace Infrastructure.Services
         
         private int CalculateStars()
         {
+            if(GameResultData.Result == GameResult.Lose)
+                return 0;
+            
             if (_commonSettings.AlwaysThreeStars)
                 return 3;
             

@@ -5,6 +5,5 @@ namespace Services.Core
 {
     public class MonoService : MonoBehaviour, IService
     {
-        
     }
 }

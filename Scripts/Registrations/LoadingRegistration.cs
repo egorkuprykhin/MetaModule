@@ -5,6 +5,8 @@ namespace Registrations
 {
     public class LoadingRegistration : RegistrationBase
     {
+        public override int Order => 2;
+
         protected override void RegisterServices(IServicesRegistrar registrar)
         {
             registrar.Register<CurrentScreenService>();

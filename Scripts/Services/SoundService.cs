@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infrastructure.Services
 {
-    public class SoundService : MonoService, IInitializableService
+    public class SoundService : MonoService, IInitializableService, IPostInitializableService
     {
         [SerializeField] public AudioSource SoundAudioSource;
         [SerializeField] public AudioSource MusicAudioSource;
@@ -17,13 +17,16 @@ namespace Infrastructure.Services
         public bool MusicEnabled => _optionsDataService.OptionsData.MusicVolume > 0;
         public float SfxVolume => _optionsDataService.OptionsData.SfxVolume;
         public float MusicVolume => _optionsDataService.OptionsData.MusicVolume;
-        
+
         public void Initialize()
         {
             _optionsDataService = ServiceLocator.GetService<OptionsDataService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _soundSettings = _configurationService.GetSettings<SoundSettings>();
-            
+        }
+
+        public void PostInitialize()
+        {
             UpdateVolume();
         }
 
@@ -48,7 +51,7 @@ namespace Infrastructure.Services
             _optionsDataService.OptionsData.MusicVolume = volume;
             UpdateVolume();
         }
-        
+
         public void SwitchSfxEnabled()
         {
             int volume = _optionsDataService.OptionsData.SfxVolume > 0 ? 0 : 1;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Infrastructure.Core
@@ -14,7 +15,9 @@ namespace Infrastructure.Core
 #if UNITY_EDITOR
         public void CollectRegistrations()
         {
-            var registrations = Object.FindObjectsOfType<RegistrationBase>();
+            var registrations = 
+                FindObjectsOfType<RegistrationBase>()
+                .OrderBy(x => x.Order);
             Registrations = new List<RegistrationBase>(registrations);
         }
 #endif
