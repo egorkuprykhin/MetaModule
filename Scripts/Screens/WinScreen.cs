@@ -15,13 +15,13 @@ namespace Infrastructure.Screens
 
         private ConfigurationService _configurationService;
         private SfxService _sfxService;
-        private SfxSettings _sfxSettings;
+        private SoundSettings _soundSettings;
 
         public void Initialize()
         {
             _sfxService = ServiceLocator.GetService<SfxService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
-            _sfxSettings = _configurationService?.GetSettings<SfxSettings>();
+            _soundSettings = _configurationService?.GetSettings<SoundSettings>();
             
             if (TimerView)
                 TimerView.Initialize();
@@ -47,7 +47,7 @@ namespace Infrastructure.Screens
             if (TimerView) 
                 TimerView.Show();
             
-            _sfxService.PlaySfx( _sfxSettings.WinGame);
+            _sfxService.PlaySfx( _soundSettings.WinGame);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Infrastructure.Services
         
         private OptionsDataService _optionsDataService;
         private ConfigurationService _configurationService;
-        private SfxSettings _soundSettings;
+        private SoundSettings _soundSettings;
 
         public bool SfxEnabled => _optionsDataService.OptionsData.SfxVolume > 0;
         public bool MusicEnabled => _optionsDataService.OptionsData.MusicVolume > 0;
@@ -23,7 +23,7 @@ namespace Infrastructure.Services
         {
             _optionsDataService = ServiceLocator.GetService<OptionsDataService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
-            _soundSettings = _configurationService.GetSettings<SfxSettings>();
+            _soundSettings = _configurationService.GetSettings<SoundSettings>();
             
             UpdateVolume();
         }

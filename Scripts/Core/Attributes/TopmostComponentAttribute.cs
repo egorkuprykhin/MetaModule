@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Infrastructure.Attributes
 {
@@ -8,6 +9,14 @@ namespace Infrastructure.Attributes
     public class TopmostComponentAttribute : Attribute
     {
         public int Order { get; set; }
+    }
+
+    public static class TopmostComponentHandler
+    {
+        public static void CorrectComponentOrder(Component component)
+        {
+            Internal.TopmostComponentHandler.CorrectComponentOrder(component);
+        }
     }
 }
 
@@ -19,7 +28,7 @@ namespace Infrastructure.Attributes.Internal
     using UnityEngine;
     using System.Reflection;
 
-    public static class TopmostComponentHandler
+    internal static class TopmostComponentHandler
     {
         public static void CorrectComponentOrder(Component component)
         {

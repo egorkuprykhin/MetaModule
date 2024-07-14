@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Infrastructure.Settings
 {
-    [CreateAssetMenu(fileName = "SfxSettings")]
-    public class SfxSettings : SettingsBase
+    [CreateAssetMenu(fileName = "SoundSettings")]
+    public class SoundSettings : SettingsBase
     {
         [SerializeField] public SfxType BackMusic;
         

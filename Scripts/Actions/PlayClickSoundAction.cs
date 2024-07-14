@@ -8,17 +8,17 @@ namespace Infrastructure.ButtonActions
     public class PlayClickSoundAction : ButtonAction
     {
         private SfxService _sfxService;
-        private SfxSettings _sfxSettings;
+        private SoundSettings _soundSettings;
 
         public override void Action()
         {
-            _sfxService.PlaySfx(_sfxSettings.Click);
+            _sfxService.PlaySfx(_soundSettings.Click);
         }
 
         protected override void Initialize()
         {
             _sfxService = ServiceLocator.GetService<SfxService>();
-            _sfxSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<SfxSettings>();
+            _soundSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<SoundSettings>();
         }
     }
 }

@@ -24,12 +24,12 @@ namespace Editor
                 if (NeedSkipFolder(metaFiles[index]))
                     continue;
                 
-                var file = metaFiles[index];
+                var metaFilePath = metaFiles[index];
                 string newGuid;
 
                 var lines = new List<string>();
                 
-                using (var input = new StreamReader(file))
+                using (var input = new StreamReader(metaFilePath))
                 {
                     while (input.ReadLine() is { } line)
                     {
@@ -49,7 +49,7 @@ namespace Editor
                     }
                 }
 
-                using (var output = new StreamWriter(file))
+                using (var output = new StreamWriter(metaFilePath))
                 {
                     for (int i = 0; i < lines.Count - 1; i++) 
                         output.WriteLine(lines[i]);
