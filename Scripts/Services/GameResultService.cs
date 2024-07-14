@@ -35,16 +35,27 @@ namespace Infrastructure.Services
         
         private int CalculateStars()
         {
-            if(GameResultData.Result == GameResult.Lose)
+            if (GameResultData.Result == GameResult.Lose)
                 return 0;
             
             if (_commonSettings.AlwaysThreeStars)
                 return 3;
             
-            if (GameResultData.FinishTime <= _commonSettings.Time3Stars)
+            if (_commonSettings.TimerFromZero)
+            {
+                if (GameResultData.FinishTime <= _commonSettings.Time3Stars)
+                    return 3;
+                
+                if (GameResultData.FinishTime <= _commonSettings.Time2Stars)
+                    return 2;
+
+                return 1;
+            }
+
+            if (GameResultData.FinishTime >= _commonSettings.Time3Stars)
                 return 3;
-            
-            if (GameResultData.FinishTime <= _commonSettings.Time2Stars)
+                
+            if (GameResultData.FinishTime >= _commonSettings.Time2Stars)
                 return 2;
 
             return 1;

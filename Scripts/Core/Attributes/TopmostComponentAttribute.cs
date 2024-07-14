@@ -10,7 +10,7 @@ namespace Infrastructure.Attributes
     {
         public int Order { get; set; }
     }
-
+#if UNITY_EDITOR
     public static class TopmostComponentHandler
     {
         public static void CorrectComponentOrder(Component component)
@@ -18,6 +18,7 @@ namespace Infrastructure.Attributes
             Internal.TopmostComponentHandler.CorrectComponentOrder(component);
         }
     }
+#endif
 }
 
 #if UNITY_EDITOR

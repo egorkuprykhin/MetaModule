@@ -8,6 +8,7 @@ namespace Infrastructure.Screens
 {
     public class WinScreen : ScreenBase, IInitializableScreen
     {
+        [SerializeField] private GameObject ActivateWhenLastLevel;
         [SerializeField] private TimerView TimerView;
         [SerializeField] private StarsView StarsView;
         [SerializeField] private ScoresView ScoresView;
@@ -16,12 +17,14 @@ namespace Infrastructure.Screens
         private ConfigurationService _configurationService;
         private SoundService _soundService;
         private SoundSettings _soundSettings;
+        private LevelsService _levelsService;
 
         public void Initialize()
         {
             _soundService = ServiceLocator.GetService<SoundService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _soundSettings = _configurationService?.GetSettings<SoundSettings>();
+            _levelsService = ServiceLocator.GetService<LevelsService>();
             
             if (TimerView)
                 TimerView.Initialize();
@@ -43,6 +46,9 @@ namespace Infrastructure.Screens
                 ScoresView.Show();
             if (LevelView)
                 LevelView.Show();
+            
+            if (ActivateWhenLastLevel)
+                ActivateWhenLastLevel.SetActive(!_levelsService.HasNextLevel());
 
             _soundService.PlaySound( _soundSettings.WinGame);
         }
