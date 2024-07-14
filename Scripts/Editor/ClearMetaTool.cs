@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Editor
 {
-    public static class ClearMetaEditorWindow
+    public static class ClearMetaTool
     {
         private static List<string> SkipFolders = new List<string> { "Sprites", "Fonts", "Scenes" };
 

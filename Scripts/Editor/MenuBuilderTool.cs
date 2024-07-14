@@ -46,6 +46,8 @@ namespace Editor
 
             foreach (Transform child in menuRoot.transform) 
                 ProcessChildScreen(child);
+            
+            Debug.Log("Success");
         }
 
         private static void ProcessChildScreen(Transform child)

@@ -42,7 +42,7 @@ namespace Infrastructure.Services
         private void WinGameByScores()
         {
             if (_scoresSettings.WinByScores)
-                _coreFinisher.FinishGame();
+                _coreFinisher.WinGame();
         }
     }
 }

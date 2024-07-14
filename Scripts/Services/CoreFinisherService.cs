@@ -1,5 +1,6 @@
 using Core.Game;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Data;
 using Infrastructure.Screens;
 using UnityEngine;
 
@@ -50,13 +51,23 @@ namespace Infrastructure.Services
         private async UniTaskVoid FinishGameByTargets()
         {
             await UniTask.WaitForSeconds(_targetsService.DelayBeforeWin);
-            FinishGame();
+            WinGame();
         }
 
-        public void FinishGame()
+        public void WinGame()
+        {
+            FinishGame(GameResult.Win);
+        }
+
+        public void LoseGame()
+        {
+            FinishGame(GameResult.Lose);
+        }
+
+        public void FinishGame(GameResult gameResult)
         {
             _gameLifecycleService.StopGame();
-            _gameResultService.CalculateGameResult();
+            _gameResultService.CalculateGameResult(gameResult);
             _playerDataService.UpdateCurrentLevelProgress();
             _playerDataService.SavePlayerData();
             
@@ -74,7 +85,9 @@ namespace Infrastructure.Services
         {
 #if UNITY_EDITOR
             if (Input.GetKeyUp(KeyCode.W)) 
-                FinishGame();
+                WinGame();
+            if (Input.GetKeyUp(KeyCode.L))
+                LoseGame();
 #endif
         }
     }

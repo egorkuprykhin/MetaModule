@@ -68,7 +68,7 @@ namespace Infrastructure.Services
 
         private void TimeIsUp()
         {
-            _coreFinisherService.FinishGame();
+            _coreFinisherService.LoseGame();
         }
     }
 }
