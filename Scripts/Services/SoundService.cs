@@ -1,11 +1,10 @@
-using Core.Sfx;
 using Infrastructure.Settings;
 using Services.Core;
 using UnityEngine;
 
 namespace Infrastructure.Services
 {
-    public class SfxService : MonoService, IInitializableService
+    public class SoundService : MonoService, IInitializableService
     {
         [SerializeField] private AudioSource SfxSoundAudioSource;
         [SerializeField] private AudioSource MusicAudioSource;
@@ -30,17 +29,17 @@ namespace Infrastructure.Services
 
         public void PlayBackgroundMusic()
         {
-            if (_soundSettings.BackMusic && _soundSettings.BackMusic.AudioClip);
+            if (_soundSettings.BackMusic && _soundSettings.BackMusic);
             {
-                MusicAudioSource.clip = _soundSettings.BackMusic.AudioClip;
+                MusicAudioSource.clip = _soundSettings.BackMusic;
                 MusicAudioSource.Play();
             }
         }
 
-        public void PlaySfx(SfxType sfxType)
+        public void PlaySfx(AudioClip audioClip)
         {
-            if (sfxType && sfxType.AudioClip)
-                SfxSoundAudioSource.PlayOneShot(sfxType.AudioClip);
+            if (audioClip)
+                SfxSoundAudioSource.PlayOneShot(audioClip);
         }
 
         public void SwitchMusicEnabled()

@@ -34,10 +34,10 @@ namespace Infrastructure.Views
         private void UpdateToggleValues()
         {
             if (MusicToggle)
-                MusicToggle.isOn = _sfxService.MusicEnabled;
+                MusicToggle.isOn = _soundService.MusicEnabled;
             
             if (SfxToggle)
-                SfxToggle.isOn = _sfxService.SfxEnabled;
+                SfxToggle.isOn = _soundService.SfxEnabled;
 
             if (VibrationToggle)
                 VibrationToggle.isOn = _vibrationService.IsEnabled;
@@ -45,12 +45,12 @@ namespace Infrastructure.Views
 
         private void SwitchEnableMusic(bool isOn)
         {
-            _sfxService.SetMusicEnabled(isOn);
+            _soundService.SetMusicEnabled(isOn);
         }
 
         private void SwitchEnableSound(bool isOn)
         {
-            _sfxService.SetSfxEnabled(isOn);
+            _soundService.SetSfxEnabled(isOn);
         }
 
         private void SwitchEnableVibration(bool isOn)

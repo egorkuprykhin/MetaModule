@@ -12,8 +12,8 @@ namespace Infrastructure.Views
 
         public override void UpdateView()
         {
-            SfxCross.enabled = !_sfxService.SfxEnabled;
-            MusicCross.enabled = !_sfxService.MusicEnabled;
+            SfxCross.enabled = !_soundService.SfxEnabled;
+            MusicCross.enabled = !_soundService.MusicEnabled;
         }
 
         protected override void Subscribe()
@@ -24,13 +24,13 @@ namespace Infrastructure.Views
 
         private void SwitchEnableSfx()
         {
-            _sfxService.SwitchSfxEnabled();
+            _soundService.SwitchSfxEnabled();
             UpdateView();
         }
 
         private void SwitchEnableMusic()
         {
-            _sfxService.SwitchMusicEnabled();
+            _soundService.SwitchMusicEnabled();
             UpdateView();
         }
     }

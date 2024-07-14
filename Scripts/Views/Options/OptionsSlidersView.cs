@@ -20,8 +20,8 @@ namespace Infrastructure.Views
 
         private void UpdateSliderValues()
         {
-            SoundSlider.value = _sfxService.SfxVolume;
-            MusicSlider.value = _sfxService.MusicVolume;
+            SoundSlider.value = _soundService.SfxVolume;
+            MusicSlider.value = _soundService.MusicVolume;
         }
 
         private void SubscribeSliders()
@@ -32,12 +32,12 @@ namespace Infrastructure.Views
 
         private void SoundEnableChanged(float value)
         {
-            _sfxService.SetSfxVolume(value);
+            _soundService.SetSfxVolume(value);
         }
 
         private void MusicEnableChanged(float value)
         {
-            _sfxService.SetMusicVolume(value);
+            _soundService.SetMusicVolume(value);
         }
     }
 }

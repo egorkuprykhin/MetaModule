@@ -9,19 +9,19 @@ namespace Infrastructure.Services
     {
         [SerializeField] private ScreenBase NextScreen;
         
-        private SfxService _sfxService;
+        private SoundService _soundService;
         private BlurService _blurService;
 
         public void Initialize()
         {
-            _sfxService = ServiceLocator.GetService<SfxService>();
+            _soundService = ServiceLocator.GetService<SoundService>();
             _blurService = ServiceLocator.GetService<BlurService>();
         }
 
         public void PostLoadingAction()
         {
             _blurService.EnableBlur();
-            _sfxService.PlayBackgroundMusic();
+            _soundService.PlayBackgroundMusic();
             
             if (NextScreen)
                 NextScreen.Show();

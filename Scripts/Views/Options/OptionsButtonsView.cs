@@ -18,16 +18,16 @@ namespace Infrastructure.Views
         private void SubscribeButtons()
         {
             if (MusicOnButton)
-                MusicOnButton.onClick.AddListener(() => _sfxService.SetMusicEnabled(true));
+                MusicOnButton.onClick.AddListener(() => _soundService.SetMusicEnabled(true));
             
             if (MusicOffButton)
-                MusicOffButton.onClick.AddListener(() => _sfxService.SetMusicEnabled(false));
+                MusicOffButton.onClick.AddListener(() => _soundService.SetMusicEnabled(false));
             
             if (SfxOnButton)
-                SfxOnButton.onClick.AddListener(() => _sfxService.SetSfxEnabled(true));
+                SfxOnButton.onClick.AddListener(() => _soundService.SetSfxEnabled(true));
             
             if (SfxOffButton)
-                SfxOffButton.onClick.AddListener(() => _sfxService.SetSfxEnabled(false));
+                SfxOffButton.onClick.AddListener(() => _soundService.SetSfxEnabled(false));
         }
     }
 }

@@ -14,12 +14,12 @@ namespace Infrastructure.Screens
         [SerializeField] private CurrentLevelView LevelView;
 
         private ConfigurationService _configurationService;
-        private SfxService _sfxService;
+        private SoundService _soundService;
         private SoundSettings _soundSettings;
 
         public void Initialize()
         {
-            _sfxService = ServiceLocator.GetService<SfxService>();
+            _soundService = ServiceLocator.GetService<SoundService>();
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _soundSettings = _configurationService?.GetSettings<SoundSettings>();
             
@@ -47,7 +47,7 @@ namespace Infrastructure.Screens
             if (TimerView) 
                 TimerView.Show();
             
-            _sfxService.PlaySfx( _soundSettings.WinGame);
+            _soundService.PlaySfx( _soundSettings.WinGame);
         }
     }
 }

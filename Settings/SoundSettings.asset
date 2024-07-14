@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5851c5e3708ef09a28b7091f8704a28f, type: 3}
-  m_Name: SfxSettings
+  m_Name: SoundSettings
   m_EditorClassIdentifier: 
-  BackMusic: {fileID: 11400000, guid: b7bd0154ab4974e00b26d5bfc5b55646, type: 2}
-  Click: {fileID: 11400000, guid: 05314ecf1bc5e8a09f91946397b3f584, type: 2}
-  WinGame: {fileID: 11400000, guid: e9f20d6a94a8400fc1a73132c9e32c58, type: 2}
-  LoseGame: {fileID: 11400000, guid: ca9d55b3ccf26d92d99f70c2b5fa5b12, type: 2}
+  BackMusic: {fileID: 0}
+  Click: {fileID: 0}
+  WinGame: {fileID: 0}
+  LoseGame: {fileID: 0}

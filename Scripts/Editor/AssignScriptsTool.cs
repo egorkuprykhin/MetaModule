@@ -18,7 +18,7 @@ namespace Editor
             ProcessAsset<LoadingSettings>(Constants.Settings.Loading);
             ProcessAsset<ScoresSettings>(Constants.Settings.Scores);
             ProcessAsset<SoundSettings>(Constants.Settings.Sound);
-            // ProcessAsset<TargetsSettings>(Constants.Settings.Targets);
+            ProcessAsset<TargetsSettings>(Constants.Settings.Targets);
             
             AssetDatabase.Refresh();
             Logger.LogColored("Done", Color.green);

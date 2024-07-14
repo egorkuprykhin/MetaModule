@@ -7,12 +7,12 @@ namespace Infrastructure.Views
     [TopmostComponent]
     public abstract class OptionsView : MetaView
     {
-        protected SfxService _sfxService;
+        protected SoundService _soundService;
         protected VibrationService _vibrationService;
 
         public override void Initialize()
         {
-            _sfxService = ServiceLocator.GetService<SfxService>();
+            _soundService = ServiceLocator.GetService<SoundService>();
             _vibrationService = ServiceLocator.GetService<VibrationService>();
             
             Subscribe();
@@ -25,7 +25,7 @@ namespace Infrastructure.Views
 
         public override void Hide()
         {
-            _sfxService.SaveSettings();
+            _soundService.SaveSettings();
             _vibrationService.SaveSettings();
         }
 

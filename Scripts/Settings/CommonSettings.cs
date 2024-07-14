@@ -12,7 +12,5 @@ namespace Infrastructure.Settings
         [SerializeField] public int Time2Stars;
         [SerializeField] public bool TimerFromZero;
         [SerializeField] public int LevelsCount;
-        [SerializeField] public string WinText;
-        [SerializeField] public string LoseText;
     }
 }
