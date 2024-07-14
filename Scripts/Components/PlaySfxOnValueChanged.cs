@@ -33,7 +33,7 @@ namespace Infrastructure.Components
 
         private void PlayAudioCLip()
         {
-            _soundService.PlaySfx(_soundSettings.Click);
+            _soundService.PlaySound(_soundSettings.Click);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Infrastructure.Screens
             if (TimerView) 
                 TimerView.Show();
             
-            _soundService.PlaySfx( _soundSettings.WinGame);
+            _soundService.PlaySound( _soundSettings.WinGame);
         }
     }
 }

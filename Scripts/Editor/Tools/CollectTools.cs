@@ -19,14 +19,14 @@ namespace Editor
             }
         }
         
-        [MenuItem("Tools/ Collect Configuration")]
-        public static void CollectConfiguration()
+        [MenuItem(Constants.Tools.CollectMetaConfiguration)]
+        public static void CollectMetaConfiguration()
         {
-            var configuration = EditorExtensions.GetSingleByName<Configuration>("_Configuration");
+            var configuration = EditorExtensions.GetSingleByName<Configuration>(Constants.Configurations.MetaConfiguration);
             if (configuration)
             {
                 var assetPath = AssetDatabase.GetAssetPath(configuration);
-                configuration.Collect(assetPath);
+                configuration.CollectSettings(assetPath);
                 
                 Logger.LogColored("Done", Color.green);
             }

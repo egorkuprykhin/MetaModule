@@ -29,14 +29,14 @@ namespace Infrastructure.Services
 
         public void PlayBackgroundMusic()
         {
-            if (_soundSettings.BackMusic && _soundSettings.BackMusic);
+            if (_soundSettings.BackMusic && _soundSettings.BackMusic)
             {
                 MusicAudioSource.clip = _soundSettings.BackMusic;
                 MusicAudioSource.Play();
             }
         }
 
-        public void PlaySfx(AudioClip audioClip)
+        public void PlaySound(AudioClip audioClip)
         {
             if (audioClip)
                 SfxSoundAudioSource.PlayOneShot(audioClip);

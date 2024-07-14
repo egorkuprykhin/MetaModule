@@ -12,7 +12,7 @@ namespace Infrastructure.ButtonActions
 
         public override void Action()
         {
-            _soundService.PlaySfx(_soundSettings.Click);
+            _soundService.PlaySound(_soundSettings.Click);
         }
 
         protected override void Initialize()

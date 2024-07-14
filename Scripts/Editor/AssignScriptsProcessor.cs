@@ -1,31 +1,17 @@
 using System;
 using System.IO;
 using System.Linq;
-using Infrastructure.Common;
-using Infrastructure.Settings;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Editor
 {
-    public static class AssignScriptsTool
+    public static class AssignScriptsProcessor
     {
-        [MenuItem("Tools/Assign Scripts To Configs")]
-        public static void AssignScriptsToConfigs()
+        public static void ProcessAsset<T>(string name = null) where T : Object
         {
-            ProcessAsset<Configuration>(Constants.Settings.Configuration);
-            ProcessAsset<CommonSettings>(Constants.Settings.Common);
-            ProcessAsset<LoadingSettings>(Constants.Settings.Loading);
-            ProcessAsset<ScoresSettings>(Constants.Settings.Scores);
-            ProcessAsset<SoundSettings>(Constants.Settings.Sound);
-            ProcessAsset<TargetsSettings>(Constants.Settings.Targets);
-            
-            AssetDatabase.Refresh();
-            Logger.LogColored("Done", Color.green);
-        }
-
-        private static void ProcessAsset<T>(string name)
-        {
+            name ??= typeof(T).Name;
             var guids = AssetDatabase.FindAssets(name);
             var assetPaths = guids.Select(AssetDatabase.GUIDToAssetPath).ToArray();
             var assetPath = assetPaths.First(path => path.Contains(".asset"));
@@ -39,6 +25,10 @@ namespace Editor
             Debug.Log($"{typeof(T).Name} processed");
             
             ReplaceGuidInFile(systemPath, guid, metaGuid);
+
+            var asset = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+            EditorUtility.SetDirty(asset);
+            AssetDatabase.SaveAssetIfDirty(asset);
         }
 
         private static string GetScriptPath<T>()

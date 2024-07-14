@@ -1,7 +1,19 @@
 namespace Infrastructure.Common
 {
-    public static class Constants
+    public static partial class Constants
     {
+#if UNITY_EDITOR
+        public static partial class Tools
+        {
+            public const string AssignMetaScripts = "Tools/Assign Meta Scripts To Configs";
+            public const string CollectMetaConfiguration = "Tools/Collect Meta Configuration Settings";
+        }
+
+        public static partial class Configurations
+        {
+            public const string MetaConfiguration = "_Configuration";
+        }
+
         public static class Screens
         {
             public const string Loading = "loading";
@@ -16,15 +28,6 @@ namespace Infrastructure.Common
             public const string Exit = "exit";
             public const string Rules = "rules";
         }
-
-        public static class Settings
-        {
-            public const string Configuration = "_Configuration";
-            public const string Common = "CommonSettings";
-            public const string Loading = "LoadingSettings";
-            public const string Scores = "ScoresSettings";
-            public const string Sound = "SoundSettings";
-            public const string Targets = "TargetsSettings";
-        }
+#endif
     }
 }
