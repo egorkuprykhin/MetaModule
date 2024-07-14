@@ -1,25 +1,22 @@
-using Infrastructure.Attributes;
-using Infrastructure.Screens;
 using Infrastructure.Services;
-using UnityEngine;
 
 namespace Infrastructure.ButtonActions
 {
-    [TopmostComponent(Order = 2)]
-    public class OpenScreenAction : ButtonAction
+    public class StartGameAfterResultAction : ButtonAction
     {
-        [SerializeField] private ScreenBase Screen;
-
+        private CoreStarterService _coreStarterService;
         private CurrentScreenService _currentScreenService;
 
         public override void Action()
         {
             _currentScreenService.HideCurrentScreen();
-            Screen.Show();
+            _coreStarterService.StartCore();
         }
 
         protected override void Initialize()
         {
+            Order = 1;
+            _coreStarterService = ServiceLocator.GetService<CoreStarterService>();
             _currentScreenService = ServiceLocator.GetService<CurrentScreenService>();
         }
     }

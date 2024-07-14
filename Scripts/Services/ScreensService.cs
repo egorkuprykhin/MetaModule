@@ -1,24 +1,37 @@
+using Game.Services;
 using Infrastructure.Screens;
+using Services.Core;
+using UnityEngine;
 
 namespace Infrastructure.Services
 {
-    public class ScreensService : IService
+    public class ScreensService : MonoService, IInitializableService
     {
-        private ScreenBase _previousScreen;
-        private ScreenBase _currentScreen;
+        [SerializeField] public ScreenBase AfterLoadingScreen;
+        [SerializeField] public ScreenBase StopGameScreen;
+        
+        private SoundService _soundService;
+        private BlurService _blurService;
 
-        public void UpdateCurrentScreen(ScreenBase currentScreen)
+        public void Initialize()
         {
-            _previousScreen = _currentScreen;
-            _currentScreen = currentScreen;
+            _soundService = ServiceLocator.GetService<SoundService>();
+            _blurService = ServiceLocator.GetService<BlurService>();
         }
 
-        public void ShowCurrentScreen() => _currentScreen.Show();
-        
-        public void HideCurrentScreen() => _currentScreen.Hide();
+        public void PostLoadingAction()
+        {
+            _blurService.EnableBlur();
+            _soundService.PlayBackgroundMusic();
+            
+            if (AfterLoadingScreen)
+                AfterLoadingScreen.Show();
+        }
 
-        public void ShowPreviousScreen() => _previousScreen.Show();
-
-        public void HidePreviousScreen() => _previousScreen.Hide();
+        public void ShowStopGameScreen()
+        {
+            if (StopGameScreen)
+                StopGameScreen.Show();
+        }
     }
 }

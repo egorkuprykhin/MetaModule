@@ -5,7 +5,7 @@ namespace Core.MetaModule.Scripts.Buttons
 {
     [RequireComponent(typeof(OpenScreenAction))]
     [RequireComponent(typeof(PauseGameAction))]
-    public class OpenScreenButtonWithoutGraphic : ButtonBaseWithoutGraphic
+    public class OpenScreenButtonEmptyGraphic : ButtonBaseEmptyGraphic
     {
     }
 }

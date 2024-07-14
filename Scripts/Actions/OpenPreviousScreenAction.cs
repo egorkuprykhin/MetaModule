@@ -6,17 +6,17 @@ namespace Infrastructure.ButtonActions
     [TopmostComponent(Order = 2)]
     public class OpenPreviousScreenAction : ButtonAction
     {
-        private ScreensService _screensService;
+        private CurrentScreenService _currentScreenService;
 
         public override void Action()
         {
-            _screensService.HideCurrentScreen();
-            _screensService.ShowPreviousScreen();
+            _currentScreenService.HideCurrentScreen();
+            _currentScreenService.ShowPreviousScreen();
         }
 
         protected override void Initialize()
         {
-            _screensService = ServiceLocator.GetService<ScreensService>();
+            _currentScreenService = ServiceLocator.GetService<CurrentScreenService>();
         }
     }
 }

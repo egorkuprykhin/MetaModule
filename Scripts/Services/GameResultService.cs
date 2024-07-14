@@ -8,11 +8,13 @@ namespace Infrastructure.Services
         private ConfigurationService _configurationService;
         private CommonSettings _commonSettings;
         private TimerService _timerService;
+        private LevelsService _levelsService;
 
         public void Initialize()
         {
             _configurationService = ServiceLocator.GetService<ConfigurationService>();
             _timerService = ServiceLocator.GetService<TimerService>();
+            _levelsService = ServiceLocator.GetService<LevelsService>();
             _commonSettings = _configurationService?.GetSettings<CommonSettings>();
         }
 
@@ -22,6 +24,7 @@ namespace Infrastructure.Services
         {
             GameResultData.Result = gameResult;
             GameResultData.FinishTime = _timerService.CurrentTime;
+            GameResultData.CurrentLevel = _levelsService.CurrentLevel;
             GameResultData.Stars = CalculateStars();
         }
 

@@ -10,7 +10,7 @@ namespace Infrastructure.Screens
     {
         [SerializeField] private TimerView TimerView;
         [SerializeField] private ScoresView ScoresView;
-        [SerializeField] private CurrentLevelView LevelView;
+        [SerializeField] private FinishLevelView LevelView;
 
         private ConfigurationService _configurationService;
         private SoundService _soundService;
@@ -24,23 +24,21 @@ namespace Infrastructure.Screens
             
             if (TimerView)
                 TimerView.Initialize();
-            
             if (ScoresView)
                 ScoresView.Initialize();
-            
             if (LevelView)
                 LevelView.Initialize();
         }
 
         protected override void OnShow()
         {
+            if (TimerView) 
+                TimerView.Show();
             if (ScoresView)
                 ScoresView.Show();
             if (LevelView)
                 LevelView.Show();
-            if (TimerView) 
-                TimerView.Show();
-            
+
             _soundService.PlaySound( _soundSettings.LoseGame);
         }
     }

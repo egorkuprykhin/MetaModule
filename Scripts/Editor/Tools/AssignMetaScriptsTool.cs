@@ -10,7 +10,7 @@ namespace Editor
         [MenuItem(Constants.Tools.AssignMetaScripts)]
         public static void AssignScriptsToConfigs()
         {
-            AssignScriptsProcessor.ProcessAsset<Configuration>(Constants.Configuration.MetaConfiguration);
+            AssignScriptsProcessor.ProcessAsset<Configuration>(Constants.MetaConfiguration);
             AssignScriptsProcessor.ProcessAsset<CommonSettings>();
             AssignScriptsProcessor.ProcessAsset<LoadingSettings>();
             AssignScriptsProcessor.ProcessAsset<ScoresSettings>();

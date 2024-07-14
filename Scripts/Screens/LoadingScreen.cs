@@ -10,12 +10,12 @@ namespace Infrastructure.Screens
     {
         [SerializeField] private ProgressbarBaseView ProgressbarView;
 
-        private PostLoadingService _postLoadingService;
+        private ScreensService _screensService;
         private LoadingSettings _loadingSettings;
 
         public void Initialize()
         {
-            _postLoadingService = ServiceLocator.GetService<PostLoadingService>();
+            _screensService = ServiceLocator.GetService<ScreensService>();
             _loadingSettings = ServiceLocator.GetService<ConfigurationService>().GetSettings<LoadingSettings>();
             
             if (ProgressbarView)
@@ -33,7 +33,7 @@ namespace Infrastructure.Screens
             if (ProgressbarView)
                 ProgressbarView.Hide();
             
-            _postLoadingService.PostLoadingAction();
+            _screensService.PostLoadingAction();
         }
 
         private async Task ShowProgress()

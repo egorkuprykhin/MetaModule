@@ -53,9 +53,8 @@ namespace Editor
             var vibrationServiceGo = new GameObject("VibrationService");
             vibrationServiceGo.transform.SetParent(loadingRegistrationGo.transform);
             
-            var postLoadingServiceGo = new GameObject("PostLoadingService");
-            postLoadingServiceGo.transform.SetParent(loadingRegistrationGo.transform);
-            
+            var screensServiceGo = new GameObject("ScreensService");
+            screensServiceGo.transform.SetParent(loadingRegistrationGo.transform);
             
             var entryPoint = entryPointGo.GetOrAddComponent<EntryPoint>();
             var registrationsBinder = registrationsGo.GetOrAddComponent<RegistrationsBinder>();
@@ -70,7 +69,7 @@ namespace Editor
             var soundAudioSource = soundAudioSourceGo.GetOrAddComponent<AudioSource>();
             var musicAudioSource = musicAudioSourceGo.GetOrAddComponent<AudioSource>();
             var vibrationService = vibrationServiceGo.GetOrAddComponent<VibrationService>();
-            var postLoadingService = postLoadingServiceGo.GetOrAddComponent<PostLoadingService>();
+            var screensService = screensServiceGo.GetOrAddComponent<ScreensService>();
 
             entryPoint.ServiceLocator = serviceLocator;
             entryPoint.ScreensLocator = screensLocator;
@@ -82,7 +81,7 @@ namespace Editor
             screensLocator.CollectScreens();
 
             configurationService.Configuration =
-                EditorExtensions.GetSingleByName<Configuration>(Constants.Configuration.MetaConfiguration);
+                EditorExtensions.GetSingleByName<Configuration>(Constants.MetaConfiguration);
             
             UIEffect blurEffect = Object.FindObjectOfType<UIEffect>();
             if (blurEffect)
@@ -95,11 +94,8 @@ namespace Editor
             musicAudioSource.playOnAwake = false;
             musicAudioSource.loop = true;
 
-            ScreenBase postLoadingScreen = Object.FindObjectOfType<StartScreen>();
-            if(!postLoadingScreen)
-                postLoadingScreen = Object.FindObjectOfType<MenuScreen>();
-
-            postLoadingService.NextScreen = postLoadingScreen;
+            screensService.AfterLoadingScreen = ScreensHelper.GetPostLoadingScreen();
+            screensService.StopGameScreen = ScreensHelper.GetStopGameScreen();
             
             Logger.LogColored("Done", Color.green);
         }

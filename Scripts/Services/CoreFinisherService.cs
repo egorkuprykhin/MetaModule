@@ -11,6 +11,7 @@ namespace Infrastructure.Services
         private GameLifecycleService _gameLifecycleService;
         private GameResultService _gameResultService;
         private PlayerDataService _playerDataService;
+        private LevelsService _levelsService;
         private IGameService _gameService;
         private ITargetsService _targetsService;
 
@@ -57,14 +58,19 @@ namespace Infrastructure.Services
         public void WinGame()
         {
             FinishGame(GameResult.Win);
+            
+            _levelsService.SetNextLevel();
+            
+            ShowResultScreen(GameResult.Win);
         }
 
         public void LoseGame()
         {
             FinishGame(GameResult.Lose);
+            ShowResultScreen(GameResult.Lose);
         }
 
-        public void FinishGame(GameResult gameResult)
+        private void FinishGame(GameResult gameResult)
         {
             _gameLifecycleService.StopGame();
             _gameResultService.CalculateGameResult(gameResult);
@@ -74,8 +80,11 @@ namespace Infrastructure.Services
             _gameService?.ClearField();
 
             _gameScreen.Hide();
-            
-            if (_gameResultService.GameResultData.IsWin())
+        }
+
+        private void ShowResultScreen(GameResult gameResult)
+        {
+            if (gameResult == GameResult.Win)
                 _winScreen.Show();
             else
                 _loseScreen.Show();

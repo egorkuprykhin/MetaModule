@@ -7,7 +7,7 @@ namespace Registrations
     {
         protected override void RegisterServices(IServicesRegistrar registrar)
         {
-            registrar.Register<ScreensService>();
+            registrar.Register<CurrentScreenService>();
             registrar.Register<ScoresService>();
             registrar.Register<GameLifecycleService>();
             registrar.Register<PlayerDataService>();

@@ -9,7 +9,7 @@ namespace Infrastructure.ButtonActions
     [TopmostComponent(Order = 0)]
     public abstract class ButtonAction : MonoBehaviour
     {
-        [SerializeField] public int Order;
+        [SerializeField] public int Order = 10;
         
         private ActionsComposer _composer;
 

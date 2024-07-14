@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Infrastructure.Attributes;
 using Infrastructure.Common;
 using Infrastructure.Screens;
@@ -11,41 +12,25 @@ namespace Editor
 {
     public static class MenuBuilderTool
     {
-        private static Dictionary<string, Type> _screens = new Dictionary<string, Type>
-        {
-            { Constants.Screens.Loading, typeof(LoadingScreen) },
-            { Constants.Screens.Start, typeof(StartScreen) },
-            { Constants.Screens.Menu, typeof(MenuScreen) },
-            { Constants.Screens.Policy, typeof(PolicyScreen) },
-            { Constants.Screens.Options, typeof(OptionsScreen) },
-            { Constants.Screens.Levels, typeof(LevelsScreen) },
-            { Constants.Screens.Game, typeof(GameScreen) },
-            { Constants.Screens.Win, typeof(WinScreen) },
-            { Constants.Screens.Lose, typeof(LoseScreen) },
-            { Constants.Screens.Exit, typeof(ExitScreen) },
-            { Constants.Screens.Rules, typeof(RulesScreen) }
-        };
-
-
-        [MenuItem("Tools/Build Menu Screens")]
+        [MenuItem(Constants.Tools.BuildScreens)]
         public static void BuildMenuScreens()
         {
-            var scene = SceneManager.GetActiveScene();
-            var menuRoot = FindMenuRoot(scene);
+            var designRoot = FindDesignRoot();
 
-            foreach (Transform child in menuRoot.transform) 
+            foreach (Transform child in designRoot.transform) 
                 ProcessChildScreen(child);
             
-            Debug.Log("Success");
+            Logger.LogColored("Done", Color.green);
         }
 
         private static void ProcessChildScreen(Transform child)
         {
-            foreach (var screenName in _screens.Keys)
+            var screens = ScreensHelper.GetScreens();
+            foreach (var screenName in screens.Keys)
             {
                 if (child.name.ToLower().Contains(screenName))
                 {
-                    var type = _screens[screenName];
+                    var type = screens[screenName];
                     if (!child.gameObject.GetComponent(type))
                         child.gameObject.AddComponent(type);
                     
@@ -55,9 +40,10 @@ namespace Editor
             }
         }
 
-        private static RectTransform FindMenuRoot(Scene scene) =>
-            scene
-                .Find<Canvas>()
-                .GetComponent<RectTransform>();
+        private static GameObject FindDesignRoot()
+        {
+            var scene = SceneManager.GetActiveScene();
+            return scene.GetRootGameObjects().First(x => x.GetComponent<Canvas>());
+        }
     }
 }

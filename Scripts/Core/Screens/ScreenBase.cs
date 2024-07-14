@@ -11,11 +11,11 @@ namespace Infrastructure.Screens
     public abstract class ScreenBase : MonoBehaviour
     {
         private Canvas _canvas;
-        private ScreensService _screensService;
+        private CurrentScreenService _currentScreenService;
 
         public void InjectScreenService()
         {
-            _screensService = ServiceLocator.GetService<ScreensService>();
+            _currentScreenService = ServiceLocator.GetService<CurrentScreenService>();
         }
 
         public void Show()
@@ -41,7 +41,7 @@ namespace Infrastructure.Screens
 
         private void UpdateServiceScreens()
         {
-            _screensService.UpdateCurrentScreen(this);
+            _currentScreenService.UpdateCurrentScreen(this);
         }
 
         private void Awake()
